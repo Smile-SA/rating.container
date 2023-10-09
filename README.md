@@ -1,6 +1,6 @@
 # **Installation**
 
-### **Requirments**
+### **Requirements**
 
 
 *   Docker
@@ -34,7 +34,7 @@ Choose the appropriate version for your operating system and follow the installa
 ###### **3. Prometheus configuration**
 
 
-**Disclamer**: create a file /etc/promotheus/prometheus.yaml and copy the contents of the code below into this file.
+**Disclaimer**: create a file /etc/promotheus/prometheus.yaml and copy the contents of the code below into this file.
  
 
 ```yaml
