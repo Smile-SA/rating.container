@@ -67,6 +67,10 @@ Run the following command to start the containers defined in your Docker Compose
 ##### **2. Accessing Grafana Metric**
 * ./grafana_metric.py rating_rules.yaml
 
+##### **3. Accessing Rating_docker_api**
+* python3 rating_docker_api.py
+*  prometheus service : http://localhost:5000/prometheus
+*  grafana service : http://localhost:5000/grafana
 
 
 
