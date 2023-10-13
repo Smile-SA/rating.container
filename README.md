@@ -24,7 +24,8 @@
 
 ##### **(Optional) PostgreSQL Client installation : pgadmin 4**
 
-* You can download and install pgAdmin 4 by following the official instructions: https://www.pgadmin.org/download
+* You can download and install pgAdmin 4 by following the official instructions: https://www.pgadmin.org/download.
+
 Choose the appropriate version for your operating system and follow the installation steps.
 
 ###### **3. Prometheus configuration**
