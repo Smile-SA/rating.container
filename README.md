@@ -28,11 +28,11 @@
 
 Choose the appropriate version for your operating system and follow the installation steps.
 
-###### **3. Prometheus configuration**
 
+### **Accessing Rating Docker**
+##### **Prometheus configuration**
 
-**Disclaimer**: create a file /etc/promotheus/prometheus.yaml and copy the contents of the code below into this file.
- 
+**Disclaimer**: create a file /etc/promotheus/prometheus.yaml and copy the contents of the code below into this file. 
 
 ```yaml
 global:
@@ -56,7 +56,7 @@ storage:
 	retention: 30d
 ```
 
-### **Accessing Rating Docker**
+
 Run the following command to start the containers defined in your Docker Compose configuration :
 * sudo docker-compose up -d
 ##### **1. Accessing Prometheus Metric**
