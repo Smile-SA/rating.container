@@ -10,25 +10,21 @@
 
 ##### **1. Docker installation**
 
-*   sudo apt update
-*   sudo apt install -y apt-transport-https ca-certificates curl
-* software-properties-common
-* curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-* sudo apt update
-* sudo apt install -y docker-ce docker-ce-cli containerd.io
-* sudo systemctl status docker
+*   Docker installation on Linux : le lien
+*   Docker installation on windows : le lien
+*   Docker installation on Mac : le lien
 
 
 ##### **2. Docker Compose installation**
 
-* sudo curl -L "https://github.com/docker/compose/releases/download/VERSION/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-* sudo chmod +x /usr/local/bin/docker-compose
+* Docker Compose installation on Linux : le lien
+* Docker Compose installation on windows : le lien
+* Docker Compose installation on Mac : le lien
 
-##### **(Optional) PostgreSQL Client installation**
-* sudo apt-get update
-* sudo apt-get install postgresql-client
-* Next, you can download and install pgAdmin by following the official instructions: https://www.pgadmin.org/download/	
+
+##### **(Optional) PostgreSQL Client installation : pgadmin 4**
+
+* You can download and install pgAdmin 4 by following the official instructions: https://www.pgadmin.org/download
 Choose the appropriate version for your operating system and follow the installation steps.
 
 ###### **3. Prometheus configuration**
