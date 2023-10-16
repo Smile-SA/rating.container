@@ -28,23 +28,9 @@
 
 Choose the appropriate version for your operating system and follow the installation steps.
 
-
-### **Accessing Rating Docker**
-
-Rating Docker is a docker compose service, to start rating docker you need to start the docker-compose.yml file using this command : 
-
-docker-compose up -d
-
-this command will start the following containers : 
-
-
-* Prometheus
-* Node exporter
-* Grafana
-* Postgres 
 ##### **Prometheus configuration**
 
-**Disclaimer**: create a file /etc/promotheus/prometheus.yaml and copy the contents of the code below into this file. 
+**Important**: create a file /etc/promotheus/prometheus.yaml and copy the contents of the code below into this file. 
 
 ```yaml
 global:
@@ -69,14 +55,28 @@ storage:
 ```
 
 
-Run the following command to start the containers defined in your Docker Compose configuration :
-* docker-compose up -d
-##### **1. Accessing Prometheus Metric**
+### **Accessing Rating Docker**
+
+
+Rating Docker is a docker compose service, to start rating docker you need to start the docker-compose.yml file using this command : 
+
+docker-compose up -d
+
+this command will start the following containers : 
+
+
+* Prometheus
+* Node exporter
+* Grafana
+* Postgres 
+
+
+##### **1. Accessing Prometheus service**
 * ./prometheus_metric.py /path/to/rating/rule(s)
-##### **2. Accessing Grafana Metric**
+##### **2. Accessing Grafana service**
 * ./grafana_metric.py /path/to/rating/rule(s)
 
-##### **3. Accessing Rating_docker_api**
+##### **(Deprecated) Accessing Rating_docker_api**
 * python3 rating_docker_api.py
 *  prometheus service : http://localhost:5000/prometheus
 *  grafana service : http://localhost:5000/grafana
