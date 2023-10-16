@@ -30,6 +30,18 @@ Choose the appropriate version for your operating system and follow the installa
 
 
 ### **Accessing Rating Docker**
+
+Rating Docker is a docker compose service, to start rating docker you need to start the docker-compose.yml file using this command : 
+
+docker-compose up -d
+
+this command will start the following containers : 
+
+
+* Prometheus
+* Node exporter
+* Grafana
+* Postgres 
 ##### **Prometheus configuration**
 
 **Disclaimer**: create a file /etc/promotheus/prometheus.yaml and copy the contents of the code below into this file. 
@@ -58,11 +70,11 @@ storage:
 
 
 Run the following command to start the containers defined in your Docker Compose configuration :
-* sudo docker-compose up -d
+* docker-compose up -d
 ##### **1. Accessing Prometheus Metric**
-* ./prometheus_metric.py rating_rules.yaml
+* ./prometheus_metric.py /path/to/rating/rule(s)
 ##### **2. Accessing Grafana Metric**
-* ./grafana_metric.py rating_rules.yaml
+* ./grafana_metric.py /path/to/rating/rule(s)
 
 ##### **3. Accessing Rating_docker_api**
 * python3 rating_docker_api.py
