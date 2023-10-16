@@ -1,5 +1,16 @@
-# **Installation**
+# Overview
 
+`rating-docker` is a Docker service that consume customizable **K**ey **P**erformance **I**ndicator as metrics and provide interfaces to exploit them. 
+
+
+## **Installation**
+
+This service is designed for docker environments, if you wish to test this service, you should have docker on your machine. 
+
+You will find below the links to the official documentation in order to install docker on your machine.
+
+
+Here is the list of prerequisites to be able to start the Rating Docker service.
 ### **Requirements**
 
 
