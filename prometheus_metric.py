@@ -83,25 +83,3 @@ for filename in os.listdir(folder_path):
             
         else:
             print(f"Failed to execute query. Status code: {response.status_code}")
-
-
-
-
-# Define the Prometheus API URL
-prometheus_url = 'http://localhost:9090/api/v1/query'
-
-# Construct the request parameters
-params = {
-    'query': query_expression,
-}
-
-# Send the HTTP GET request to Prometheus
-response = requests.get(prometheus_url, params=params)
-
-# Check if the request was successful (HTTP status code 200)
-if response.status_code == 200:
-    result = response.json()
-    # Process the query result as needed
-    print(result)
-else:
-    print(f"Failed to execute query. Status code: {response.status_code}")
