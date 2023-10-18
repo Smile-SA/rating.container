@@ -1,9 +1,8 @@
 # Overview
 
-`rating-docker` is a Docker service that consume customizable **K**ey **P**erformance **I**ndicator as metrics and provide interfaces to exploit them. 
+`rating-docker` is a Docker service that consume customizable **K**ey **P**erformance **I**ndicator as metrics. 
 
-
-## **Installation**
+### **Installation**
 
 This service is designed for docker environments, if you wish to test this service, you should have docker on your machine. 
 
@@ -11,7 +10,7 @@ You will find below the links to the official documentation in order to install 
 
 
 Here is the list of prerequisites to be able to start `rating-docker`.
-### **Requirements**
+##### **Requirements**
 
 
 *   Docker
@@ -35,7 +34,6 @@ Here is the list of prerequisites to be able to start `rating-docker`.
 
 * You can download and install pgAdmin 4 by following the official instructions: https://www.pgadmin.org/download.
 
-Choose the appropriate version for your operating system and follow the installation steps.
 
 ##### **Prometheus configuration**
 
@@ -60,12 +58,12 @@ storage:
 ```
 
 
-### **Accessing Rating Docker**
+# **Accessing Rating Docker**
 
 
-Rating Docker is a docker compose service, to start rating docker you need to start the docker-compose.yml file using this command : 
+To start rating docker you need to start the docker-compose.yml file using this command : 
 
-docker-compose up -d
+* **docker-compose up -d**
 
 this command will start the following containers : 
 
@@ -73,7 +71,8 @@ this command will start the following containers :
 * Prometheus
 * Node exporter
 * Grafana
-* Postgres 
+* Postgres-16.0
+* Timescaledb : is a PostgreSQL extension designed for improved handling of time-series data.
 
 
 ##### **1. Accessing Prometheus service**
