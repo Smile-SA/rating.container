@@ -2,37 +2,17 @@
 
 `rating-docker` is a Docker service that consume customizable **K**ey **P**erformance **I**ndicator as metrics. 
 
-### **Installation**
-
+#### **Requirements**
 This service is designed for docker environments, if you wish to test this service, you should have docker on your machine. 
-
-You will find below the links to the official documentation in order to install docker on your machine.
 
 
 Here is the list of prerequisites to be able to start `rating-docker`.
-##### **Requirements**
 
 
-*   Docker
-*   Docker compose
+*   Docker  la version
+*   Docker compose la version
 *   'Rating Docker' project cloned to local machine
 
-
-##### **1. Docker installation**
-
-*   Docker installation on Linux : https://docs.docker.com/desktop/install/linux-install/
-*   Docker installation on Windows : https://docs.docker.com/desktop/install/windows-install/
-*   Docker installation on Mac : https://docs.docker.com/desktop/install/mac-install/
-
-
-##### **2. Docker Compose installation**
-
-* Official documentation for Docker Compose installation : https://docs.docker.com/compose/install/
-
-
-##### **(Optional) PostgreSQL Client installation : pgadmin 4**
-
-* You can download and install pgAdmin 4 by following the official instructions: https://www.pgadmin.org/download.
 
 
 ##### **Prometheus configuration**
