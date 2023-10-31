@@ -74,7 +74,7 @@ for filename in os.listdir(folder_path):
                         "targets": [
                             {
                                 "refId": "A",
-                                "rawSql": f"SELECT time, temperature FROM sensor_data WHERE metric_name={metric_name}",
+                                "rawSql": f"SELECT time,value FROM metric_data WHERE metric_name='{metric_name}'",
                                 
                             }
                         ],
