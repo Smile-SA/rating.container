@@ -1,25 +1,16 @@
-import sys
-import yaml
 import psycopg2
+import sys
 import json
 
-def list_of_list(lst):
-    if all(isinstance(item, list) for item in lst):
-        return True
-    elif all(not isinstance(item, list) for item in lst):
-        return False
-    else:
-        return False
 
-
-def insert_into_table(table_name,  columns,values):
+def read_data_from_table(table_name, metric_name, output_file):
     # Define your PostgreSQL database connection parameters
     db_params = {
         'dbname': 'mydatabase',
         'user': 'myuser',
         'password': 'mypassword',
         'host': 'localhost'  # Typically 'localhost' for local connections
-        #'port': 'your_port'   # Default PostgreSQL port is 5432
+        # Default PostgreSQL port is 5432
     }
 
     # Connect to the PostgreSQL database
@@ -33,58 +24,50 @@ def insert_into_table(table_name,  columns,values):
     cursor = conn.cursor()
 
     try:
-        # Construct the SQL INSERT statement dynamically
-        insert_sql = f"INSERT INTO {table_name} ({', '.join(columns)}) VALUES ({', '.join(['%s'] * len(values))});"
-        
-        # Execute the INSERT statement with the provided values
-        cursor.execute(insert_sql, values)
-        
-        # Commit the transaction to save the changes
-        conn.commit()
-        print("Data inserted successfully.")
+        # Construct the SQL SELECT statement dynamically for composite primary keys
+        select_sql = f"SELECT * FROM {table_name} WHERE metric_name='{metric_name}';"
+
+        # Execute the SELECT statement with the provided primary key values
+        cursor.execute(select_sql)
+
+        # Fetch the data for the specified composite primary key
+        data = cursor.fetchall()
+
+        if data:
+            print("Data found:")
+            # Fetch the column names
+            col_names = [desc[0] for desc in cursor.description]
+
+            # Combine column names with data in a dictionary
+            data_with_columns = []
+            for row in data:
+                data_with_columns.append(dict(zip(col_names, row)))
+
+            # Convert the data to a JSON object
+            json_data = json.dumps(data_with_columns, default=str, indent=4)
+
+
+            # Write the JSON data to a file
+            with open(output_file, 'w') as f:
+                f.write(json_data)
+            print(f"Data written to {output_file} in JSON format.")
+        else:
+            print("Data not found for the specified composite primary key.")
     except psycopg2.Error as e:
-        # Rollback the transaction in case of an error
-        conn.rollback()
-        print(f"Error: Unable to insert data: {e}")
-    finally:
-        # Close the cursor and database connection
-        cursor.close()
-        conn.close()
+        print(f"Error: Unable to fetch data: {e}")
+
+    # Close the cursor and database connection
+    cursor.close()
+    conn.close()
 
 
-def yaml_parser(yaml_file_path):    
-    # Read the contents of the specified YAML file
-    try:
-        with open(yaml_file_path, 'r') as file:
-            yaml_data = file.read()
-    except FileNotFoundError:
-        print(f"Error: File '{yaml_file_path}' not found.")
+if __name__ == "__main__":
+    if len(sys.argv) < 3:
+        print("Usage: python read_from_table.py <table_name> <metric_name> <output_file>")
         sys.exit(1)
 
-    # Parse the YAML data
-    try:
-        data = yaml.safe_load(yaml_data)
-    except yaml.YAMLError as e:
-        print(f"Error parsing YAML file: {e}")
-        sys.exit(1)
-    return data
+    table_name = "metric_data" #sys.argv[1]
+    metric_name = sys.argv[1]
+    output_file = sys.argv[2]
 
-
-def get_promql_from_yaml_parser(data):    
-    # Extract variables from the 'spec' element
-    spec = data.get('spec', {})
-
-    # Get all keys in 'spec' before 'metric'
-    variables = {}
-    for key, value in spec.items():
-        if key == 'metric':
-            query = value
-            break
-        variables[key] = value
-
-    # Replace placeholders in 'query' with corresponding variables
-    for key, value in variables.items():
-        placeholder = f'{{{key}}}'
-        query = query.replace(placeholder, f'{{{value}}}')
-    return query
-
+    read_data_from_table(table_name, metric_name, output_file)
