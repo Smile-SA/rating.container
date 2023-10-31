@@ -88,7 +88,7 @@ This service uses grafana to display prometheus results stored in the postgres d
 ##### **3. Accessing rating results**
 
 
-* ./raing_results_to_json.py table_name metric_name
+* ./raing_results_to_json.py metric_name
 
 
 ##### **(Deprecated) Accessing Rating_docker_api**
