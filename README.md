@@ -84,6 +84,13 @@ This service uses grafana to display prometheus results stored in the postgres d
 
 * ./grafana_metric.py /path/to/rating/rule(s)
 
+
+##### **3. Accessing rating results**
+
+
+* ./raing_results_to_json.py table_name metric_name
+
+
 ##### **(Deprecated) Accessing Rating_docker_api**
 * python3 rating_docker_api.py
 *  prometheus service : http://localhost:5000/prometheus
