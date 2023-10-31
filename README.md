@@ -9,8 +9,8 @@ This service is designed for docker environments, if you wish to test this servi
 Here is the list of prerequisites to be able to start `rating-docker`.
 
 
-*   Docker  la version
-*   Docker compose la version
+*   Docker  
+*   Docker compose 
 *   'Rating Docker' project cloned to local machine
 
 
@@ -38,6 +38,22 @@ storage:
 ```
 
 
+##### **Node exporter configuration**
+
+Use the node-exporter.yaml file if you want to add collectors not enabled by default in node-exporter.
+
+
+exhaustive list of collectors : https://github.com/prometheus/node_exporter
+
+
+
+```yaml
+collectors:
+  - collector name:
+  
+```
+
+
 # **Accessing Rating Docker**
 
 
@@ -51,7 +67,6 @@ this command will start the following containers :
 * Prometheus
 * Node exporter
 * Grafana
-* Postgres-16.0
 * Timescaledb : is a PostgreSQL extension designed for improved handling of time-series data.
 
 
