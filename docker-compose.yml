@@ -33,16 +33,7 @@ services:
     depends_on:
       - prometheus
     networks:
-      - monitoring_net  # Add this line
-
-  #ratingcode:
-   # image : ratingcode
-   # container_name : ratingcode
-   # ports:
-   # - "8080:8080"
-   # networks:
-   #   - monitoring_net
-    
+      - monitoring_net  # Add this line    
 
   postgres:
     image: postgres
@@ -71,6 +62,19 @@ services:
       - ./sql-scripts:/docker-entrypoint-initdb.d
     networks:
       - monitoring_net
+    python-runner:
+      image: python:3
+      container_name: python-runner
+      volumes:
+        - ./prometheus_metric_2.py:/app/prometheus_metric_2.py
+        - ./rules_folder:/app/rules_folder
+        - ./utils.py:/app/utils.py  
+      command: ["sh", "-c", "pip install requests pyyaml psycopg2-binary && sleep 3 && python3 -u /app/prometheus_metric_2.py /app/rules_folder"]
+      depends_on:
+        - prometheus
+
+      networks:
+        - monitoring_net
 
 networks:
   monitoring_net:
