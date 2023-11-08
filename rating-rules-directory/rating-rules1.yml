@@ -23,7 +23,7 @@ spec:
     
   metric: "((ceil(sum(node_memory_MemTotal_bytes) * max(node_memory_MemTotal_bytes)/(1024*1024*1024)))/1 > 
           (ceil(sum(node_memory_MemTotal_bytes) * max(node_memory_MemTotal_bytes))) /1 or 
-          (ceil(sum(node_memory_MemTotal_bytes) * max(node_memory_MemTotal_bytes)))/1) * 0.5"
+          (ceil(sum(node_memory_MemTotal_bytes) * max(node_memory_MemTotal_bytes)))/1) * {price}"
   name: aks-cost
 
   #((ceil(sum(node_memory_MemTotal_bytes) * max(node_memory_MemTotal_bytes)/(1024*1024*1024)))/1 > (ceil(sum(node_memory_MemTotal_bytes) * max(node_memory_MemTotal_bytes))) /1 or (ceil(sum(node_memory_MemTotal_bytes) * max(node_memory_MemTotal_bytes)))/1) * 0.5
