@@ -78,7 +78,7 @@ services:
 
 networks:
   monitoring_net:
-    driver : bridge  # Define the user-defined network
+    driver : bridge  
 
 
 volumes:
