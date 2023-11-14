@@ -56,26 +56,23 @@ collectors:
 
 # **Accessing Rating Docker**
 
+To start rating docker, you need to run the file towards-rating-docekr.sh : 
+* **./towards-rating-docker.sh** 
 
-To start rating docker you need to start the docker-compose.yml file using this command : 
-
-* **docker-compose up -d**
-
-this command will start the following containers : 
+This command will start rating-docker using the rating rules path defined in the configuration file.
 
 
-* Prometheus
-* Node exporter
-* Grafana
-* Timescaledb : is a PostgreSQL extension designed for improved handling of time-series data.
 
 
 ##### **1. Accessing Prometheus service**
 
-This service exposes rating rules to prometheus, then saves the prometheus results in postgres.
+This service exposes rating rules to prometheus, then saves the results in postgres.
 
 
-* ./prometheus_metric.py /path/to/rating/rule(s)
+* ./rating_rules_manager.py /path/to/rating/rule(s) : Expose rating rules to Prometheus, then saves the Prometheus results in Postgres.
+* ./rating_rules_manager.py --add /path/to/rule : Add a new rating rule at runtime
+* ./rating_rules_manager.py --rm /path/to/rule : Remove an existing rating rule at runtime
+* ./rating_rules_manager.py --update /path/to/rule : Update an existing rating rule at runtime
 
 
 ##### **2. Accessing Grafana service**
