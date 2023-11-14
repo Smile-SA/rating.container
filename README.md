@@ -54,6 +54,18 @@ collectors:
 ```
 
 
+##### **Config file**
+
+Use config.env to define the path to the rating rules.
+
+
+
+```env
+# .env file
+
+RULES_FOLDER=./rating-rules  
+```
+
 # **Accessing Rating Docker**
 
 To start rating docker, you need to run the file towards-rating-docekr.sh : 
