@@ -8,7 +8,7 @@ docker-compose up -d
 source config.env
 RULES_FOLDER_VALUE=$RULES_FOLDER
 
-# Run the prometheus_metric.py script
+#
 ./rating_rules_manager.py $RULES_FOLDER_VALUE
 
 
