@@ -68,8 +68,8 @@ RULES_FOLDER=./rating-rules
 
 # **Accessing Rating Docker**
 
-To start rating docker, you need to run the file towards-rating-docekr.sh : 
-* **./towards-rating-docker.sh** 
+To start rating docker, you need to run the file start-rating-docker.sh : 
+* **./start-rating-docker.sh** 
 
 This command will start rating-docker using the rating rules path defined in the configuration file.
 
