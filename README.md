@@ -82,9 +82,9 @@ This service exposes rating rules to prometheus, then saves the results in postg
 
 
 * ./rating_rules_manager.py /path/to/rating/rule(s) : Expose rating rules to Prometheus, then saves the Prometheus results in Postgres.
-* ./rating_rules_manager.py --add /path/to/rule : Add a new rating rule at runtime
-* ./rating_rules_manager.py --rm /path/to/rule : Remove an existing rating rule at runtime
-* ./rating_rules_manager.py --update /path/to/rule : Update an existing rating rule at runtime
+* ./rating_rules_manager.py --add /path/to/rule : Add a new rating rule 
+* ./rating_rules_manager.py --rm /path/to/rule : Remove an existing rating rule 
+* ./rating_rules_manager.py --update /path/to/rule : Update an existing rating rule 
 
 
 ##### **2. Accessing Grafana service**
