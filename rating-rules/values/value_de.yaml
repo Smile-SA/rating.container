@@ -1,0 +1,22 @@
+apiVersion: rating.alterway.fr/v1
+kind: RatingRuleInstance
+metadata:
+  name: rating-rule-instance-carbon-emission
+  namespace: rating
+  #namespace: {{ .Release.Namespace }}
+spec:
+  name: carbon_simulation_DE_1
+  timeframe: 3600s
+  cpu: "8"
+  memory: "16"
+  price: "0.253" 
+  metric: "((ceil(sum(node_memory_Active_anon_bytes) * max(node_memory_MemTotal_bytes)/(1024*1024*1024))) + (ceil(sum(node_cpu_core_throttles_total)
+          * max(node_cpu_package_throttles_total))) + sum(prometheus_remote_storage_samples_in_total)) * 220/1000 *{price} / 1000000" 
+
+
+
+
+
+
+
+          

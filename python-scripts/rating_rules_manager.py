@@ -8,8 +8,9 @@ import json
 import shutil
 from utils import list_of_list
 from utils import delete_from_table
+from utils import create_instance
+from utils import start_rating
 import argparse
-
 
 # Create an ArgumentParser object
 parser = argparse.ArgumentParser(description="Prometheus Metric Script")
@@ -18,11 +19,40 @@ parser.add_argument("--add", metavar="filename", type=str, help="Add a YAML file
 parser.add_argument("--rm", metavar="filename", type=str, help="Remove a YAML file from rating rules")
 parser.add_argument("--update", metavar="filename", type=str, help="Update a YAML file from rating rules")
 
+# Define either -t or --templates as options for templates path
+parser.add_argument("-t", "--templates", metavar="/path/to/template(s)", type=str, help="Path to templates")
+
+# Define either -v or --values as options for values path
+parser.add_argument("-v", "--values", metavar="/path/to/value(s)", type=str, help="Path to values")
+
+# Define either -i or --instance as options for instance path
+parser.add_argument("-i", "--instance", metavar="/path/to/instance", type=str, help="Path to instance")
+
 args = parser.parse_args()
 
 folder_path = args.folder_path  # Get the folder path from the command line argument
 if not os.path.isdir(folder_path):
     print(f"Error: {folder_path} is not a valid directory.")
+    sys.exit(1)
+
+
+
+if args.instance:
+    
+    # Assuming your create_instance function takes absolute paths
+    template_path = os.path.abspath(args.templates) if args.templates else None
+    value_path = os.path.abspath(args.values) if args.values else None
+    instance_path = os.path.abspath(args.instance)
+    
+    # Call create_instance only if both templates and values paths are provided
+    if template_path and value_path:
+        print(f"Template Path: {args.templates}")
+        print(f"Value Path: {args.values}")
+        print(f"{args.instance} instance created")
+        create_instance(template_path, value_path, instance_path)
+        start_rating(instance_path)
+    else:
+        print("Both templates and values paths are required to create instances.")
     sys.exit(1)
 
 if args.update:

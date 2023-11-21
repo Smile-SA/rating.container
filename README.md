@@ -92,6 +92,10 @@ The **rating_rules_manager.py** script is designed to manage Prometheus metric r
 * ./rating_rules_manager.py --update /path/to/rule : Update an existing rating rule 
 
 
+* ./rating_rules_manager --templates /path/to/template --values /path/to/value --instance /path/to/instance
+
+
+
 We can access to the Prometheus UI by visiting http://localhost:9090 in any web browser.
 ##### **2. Accessing Grafana service**
 

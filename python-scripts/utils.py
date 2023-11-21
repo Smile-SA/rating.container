@@ -2,6 +2,130 @@ import sys
 import yaml
 import psycopg2
 import json
+from collections import OrderedDict
+import yaml
+import requests
+
+
+
+def start_rating(yaml_file_path):
+    try:
+        with open(yaml_file_path, 'r') as file:
+            yaml_data = file.read()
+    except FileNotFoundError:
+        print(f"Error: File '{yaml_file_path}' not found.")
+        
+
+    # Parse the YAML data
+    try:
+        data = yaml.safe_load(yaml_data)
+    except yaml.YAMLError as e:
+        print(f"Error parsing YAML file: {e}")
+
+    # Extract variables from the 'spec' element
+    spec = data.get('spec', {})
+
+    # Get all keys in 'spec' before 'metric'
+    variables = {}
+    for key, value in spec.items():
+        if key == 'metric':
+            query = value
+            break
+        variables[key] = value
+
+    # Replace placeholders in 'query' with corresponding variables
+    for key, value in variables.items():
+        placeholder = f'{{{key}}}'
+        query = query.replace(placeholder, f'{{{value}}}')
+
+    query_expression = query
+    
+    # Define the Prometheus API URL
+    prometheus_url = 'http://localhost:9090/api/v1/query'
+
+    # Construct the request parameters
+    params = {
+
+        'query' : query_expression,
+
+    }
+
+    # Send the HTTP GET request to Prometheus
+    response = requests.get(prometheus_url, params=params)
+
+    table_name = "metric_data"
+    columns = ['metric_name','job_name','metric_time','value']
+    # Check if the request was successful (HTTP status code 200)
+    if response.status_code == 200:
+        result = response.json()
+        if result['data']['result']:
+            
+            
+            for item in result['data']['result']:
+                #print(item)
+                #job = item['metric']['job']
+                job = item['metric']
+                values = item['value']
+                if list_of_list(values):    
+                    for val in values:
+                        all_data = [query_expression,"",val[0],val[1]]
+                        insert_into_table(table_name,columns, all_data)
+                        
+                        
+                else:
+                    all_data = [query_expression,"",values[0],values[1]]
+                    insert_into_table(table_name, columns, all_data)
+                    
+
+        else : 
+            print(f" {yaml_file_path} : rules are not applicable")        
+    else:
+        print(f"Failed to execute query. Status code: {response.status_code}")
+
+    return 
+
+def create_instance(template_path, value_path, instance_path):
+    # Load the template and value YAML files
+    with open(template_path, 'r') as template_file:
+        template_data = yaml.safe_load(template_file)
+
+    with open(value_path, 'r') as value_file:
+        value_data = yaml.safe_load(value_file)
+
+    # Assuming value_data is a list of dictionaries
+    if isinstance(value_data, list):
+        # Merge dictionaries in the list
+        merged_dict = {}
+        for d in value_data:
+            merged_dict.update(d)
+        value_data = merged_dict
+
+    # Ensure that value_data is a dictionary
+    if not isinstance(value_data, dict):
+        print(f"Error: Invalid format in {value_path}")
+        return
+
+    content_instance = OrderedDict((key, value_data[key]) for key in value_data.keys())
+    content_instance['metric'] = template_data['spec']['query_template']
+    
+    # Convert OrderedDict to regular dictionary
+    content_instance_dict = dict(content_instance)
+
+
+    # Create the instance YAML data
+    instance_data = {
+        'apiVersion': 'rating.alterway.fr/v1',
+        'kind': 'RatingRuleInstance',
+        'metadata': {
+            'name': f'rating-rule-instance-{content_instance["metric_name"]}',
+            'namespace': 'rating'
+        },
+        'spec': content_instance_dict
+    }
+
+    # Write the instance YAML data to the instance file
+    with open(instance_path, 'w') as instance_file:
+        yaml.dump(instance_data, instance_file, default_flow_style=False)
 
 def list_of_list(lst):
     if all(isinstance(item, list) for item in lst):
