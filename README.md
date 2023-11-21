@@ -74,12 +74,17 @@ To start rating docker, you need to run the file start-rating-docker.sh :
 This command will start rating-docker using the rating rules path defined in the configuration file.
 
 
+The following containers will be started : 
+* Prometheus
+* Node-exporter
+* Timescaledb
+* Grafana
 
-
-##### **1. Accessing Prometheus service**
+#### **1. Rating rules management**
 
 This service exposes rating rules to prometheus, then saves the results in postgres.
 
+The **rating_rules_manager.py** script is designed to manage Prometheus metric rating rules specified in YAML files. It provides functionalities to add, remove, and update rating rules.
 
 * ./rating_rules_manager.py /path/to/rating/rule(s) : Expose rating rules to Prometheus, then saves the Prometheus results in Postgres.
 * ./rating_rules_manager.py --add /path/to/rule : Add a new rating rule 
@@ -87,23 +92,18 @@ This service exposes rating rules to prometheus, then saves the results in postg
 * ./rating_rules_manager.py --update /path/to/rule : Update an existing rating rule 
 
 
+We can access to the Prometheus UI by visiting http://localhost:9090 in any web browser.
 ##### **2. Accessing Grafana service**
 
 This service uses grafana to display prometheus results stored in the postgres database.
 
+
 * ./grafana_metric.py /path/to/rating/rule(s)
 
 
-##### **3. Accessing rating results**
+We can access to Grafana UI by visiting http://localhost:3000 in any web browser.
 
 
-* ./raing_results_to_json.py metric_name
-
-
-##### **(Deprecated) Accessing Rating_docker_api**
-* python3 rating_docker_api.py
-*  prometheus service : http://localhost:5000/prometheus
-*  grafana service : http://localhost:5000/grafana
 
 
 
