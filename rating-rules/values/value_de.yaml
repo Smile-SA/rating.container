@@ -1,0 +1,4 @@
+- metric_name: carbon_simulation_DE_1
+- template_name: carbon_simulation
+- carbon_factor: 0.253
+- timeframe: 3600s
