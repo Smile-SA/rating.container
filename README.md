@@ -86,13 +86,13 @@ This service exposes rating rules to prometheus, then saves the results in postg
 
 The **rating_rules_manager.py** script is designed to manage Prometheus metric rating rules specified in YAML files. It provides functionalities to add, remove, and update rating rules.
 
-* ./rating_rules_manager.py /path/to/rating/rule(s) : Exposes rating rules to Prometheus, then saves the Prometheus results in Postgres.
+* ./rating_rules_manager.py /path/to/rating/rule(s) : Expose rating rules to Prometheus, then saves the Prometheus results in Postgres.
 * ./rating_rules_manager.py --add /path/to/rule : Add a new rating rule 
 * ./rating_rules_manager.py --rm /path/to/rule : Remove an existing rating rule 
 * ./rating_rules_manager.py --update /path/to/rule : Update an existing rating rule 
 
 
-* ./rating_rules_manager --templates /path/to/template --values /path/to/value --instance /path/to/instance : Creates an instance from template and value.
+* ./rating_rules_manager --templates /path/to/template --values /path/to/value --instance /path/to/instance : Create an instance from template and value.
 
 
 
