@@ -57,8 +57,7 @@ for filename in os.listdir(folder_path):
 
         # Grafana API URL (replace with your Grafana URL)
         grafana_url = 'http://localhost:3000/api/dashboards/db'
-        #dashboard_name = sys.argv[1]
-        #metric_name = sys.argv[2]
+
         metric_name = query_expression
         dashboard_name = "dashboard "+ metric_name
         # Define the Grafana dashboard configuration

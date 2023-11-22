@@ -97,12 +97,6 @@ The **rating_rules_manager.py** script is designed to manage Prometheus metric r
 
 
 We can access to the Prometheus UI by visiting http://localhost:9090 in any web browser.
-##### **2. Accessing Grafana service**
-
-This service uses grafana to display prometheus results stored in the postgres database.
-
-
-* ./grafana_metric.py /path/to/rating/rule(s)
 
 
 We can access to Grafana UI by visiting http://localhost:3000 in any web browser.
