@@ -64,9 +64,6 @@ services:
     networks:
       - monitoring_net
 
-
-   
-
 networks:
   monitoring_net:
     driver : bridge  # Define the user-defined network
