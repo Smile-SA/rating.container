@@ -84,3 +84,16 @@ docker-compose down
 - Ensure proper permissions for the script files (`start-rating-docker.sh` and `rating_rules_manager.py`) to execute.
 
 Feel free to explore and customize the project based on your requirements!
+
+
+
+# **Architecture**
+
+The interactions of the differents `rating-docker` components are described visually by the schema below.
+
+![rating-operator](/img/RO-architecture.jpg)
+
+To learn more about how they are used or configured, respectively read [the usage](/documentation/USAGE.md) and [the configuration](/documentation/CRD.md) documentations.
+
+NOTE: Arrows indicate request or connection initiation direction, not necessarily dataflow direction.
+
