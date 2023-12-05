@@ -81,9 +81,9 @@ Creates a rating rules instance from a rating rules template and a rating rule v
 
 
 
-#### **Config file**
+##### **Config file**
 
-Use config.env to define the path to the rating rules.
+Use `config.env` to define the path to the rating rules.
 
 
 
@@ -94,7 +94,7 @@ RULES_FOLDER=./rating-rules
 ```
 
 ## Configuration details
-#### **Node exporter configuration**
+##### **Node exporter configuration**
 
 Use the node-exporter.yaml file if you want to add collectors not enabled by default in node-exporter.
 
@@ -108,7 +108,7 @@ collectors:
   - collector name:
   
 ```
-#### **Prometheus configuration**
+##### **Prometheus configuration**
 
  
 
@@ -143,9 +143,6 @@ To stop and remove the Docker containers, use:
 docker-compose down
 ```
 
-
-
-Exposes rating rules to prometheus, then saves the results in postgres.
 
 
 
