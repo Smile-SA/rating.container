@@ -35,7 +35,7 @@ cd rating.docker
 This script launches the necessary services defined in the `docker-compose.yml` file, including Prometheus, Grafana, Node Exporter, and TimescaleDB. And exposes rating rules defined in the configuration file to prometheus.
 
 - Prometheus is accessible at [http://localhost:9090](http://localhost:9090).
-- Grafana is accessible at [http://localhost:3000](http://localhost:3000). Login with the provided credentials (admin/admin) and configure Prometheus as a data source.
+- Grafana is accessible at [http://localhost:3000](http://localhost:3000). Login with the provided credentials (admin/admin).
 
 
 ## **Runtime options**
