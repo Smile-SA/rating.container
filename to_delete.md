@@ -91,9 +91,17 @@ Feel free to explore and customize the project based on your requirements!
 
 The interactions of the differents `rating-docker` components are described visually by the schema below.
 
-![rating-operator](/img/RO-architecture.jpg)
+![rating-operator](/img/architecture.png)
 
-To learn more about how they are used or configured, respectively read [the usage](/documentation/USAGE.md) and [the configuration](/documentation/CRD.md) documentations.
 
 NOTE: Arrows indicate request or connection initiation direction, not necessarily dataflow direction.
 
+
+
+
+To learn more about how they are used or configured, respectively read [the usage](/documentation/USAGE.md) and [the configuration](/documentation/CRD.md) documentations.
+
+
+
+
+**Important**: create a file prometheus.yaml on /etc/promotheus and copy the contents of the code below into this file.
