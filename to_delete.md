@@ -105,3 +105,5 @@ To learn more about how they are used or configured, respectively read [the usag
 
 
 **Important**: create a file prometheus.yaml on /etc/promotheus and copy the contents of the code below into this file.
+
+* ./rating_rules_manager.py /path/to/rating/rule(s) : Expose rating rules to Prometheus, then saves the Prometheus results in Postgres.

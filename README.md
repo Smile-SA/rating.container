@@ -70,8 +70,12 @@ Creates a rating rules instance from a rating rules template and a rating rule v
   ```bash
   ./rating_rules_manager --templates /path/to/template.yaml --values /path/to/value.yaml --instance /path/to/instance.yaml
   ```
+or 
 
-* ./rating_rules_manager.py /path/to/rating/rule(s) : Expose rating rules to Prometheus, then saves the Prometheus results in Postgres.
+  ```bash
+  ./rating_rules_manager -t /path/to/template.yaml -v /path/to/value.yaml -i /path/to/instance.yaml
+  ```
+
 
 
 
