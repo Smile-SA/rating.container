@@ -77,6 +77,14 @@ Creates a rating rules instance from a rating rules template and a rating rule v
     ./rating_rules_manager -t /path/to/template.yaml -v /path/to/value.yaml -i /path/to/instance.yaml
   ```
 
+| Option            | Description                                                           | Example Usage                                      |
+|-------------------|-----------------------------------------------------------------------|-----------------------------------------------------|
+| `--add`           | Adds a new rating rule instance and exposes it to Prometheus.         | `./rating_rules_manager.py --add /path/to/rating/rule.yaml` |
+| `--rm`            | Removes an existing rating rule instance.                             | `./rating_rules_manager.py --rm /path/to/rating/rule.yaml` |
+| `--update`        | Updates an existing rating rule instance and exposes it to Prometheus.| `./rating_rules_manager.py --update /path/to/rating/rule.yaml` |
+| `-t` or `--templates` | Path to rating rules template(s) for instance creation.             | `./rating_rules_manager.py -t /path/to/template.yaml -v /path/to/value.yaml -i /path/to/instance.yaml` |
+| `-v` or `--values` | Path to rating rules value(s) for instance creation.                 | `./rating_rules_manager.py -t /path/to/template.yaml -v /path/to/value.yaml -i /path/to/instance.yaml` |
+| `-i` or `--instance`| Path to store the created rating rule instance.                      | `./rating_rules_manager.py -t /path/to/template.yaml -v /path/to/value.yaml -i /path/to/instance.yaml` |
 
 
 
@@ -136,9 +144,42 @@ storage:
 ```
 
 
+## Minimal example
+
+
+The `rating-rules` repository contains four rating rules instances which transform system resources into CO2.
+
+Each file in represents a country, i.e. : 
+- rating-carbon-FRANCE-instance.yaml : france
+
+- rating-carbon-ITALY-instance.yaml : italy
+
+- rating-carbon-DEUTCH-instance.yaml : germany
+
+- rating-carbon-EUROPE-instance.yaml : EU.
 
 
 
+
+
+
+
+
+ Prometheus is accessible at [http://localhost:9090](http://localhost:9090).
+
+ Grafana is accessible at [http://localhost:3000](http://localhost:3000). Login with the provided credentials (admin/admin).
+
+## Use Case Coverage
+
+| Use Case                   | Status          |
+|----------------------------|-----------------|
+| Start witout rating rules instances        | ✔️ Covered       |
+| Start with rating rules instances        | ✔️ Covered       |
+| Remove at runtime a rating rule instance      | ✔️ Covered       |
+| Update at runtime a rating rule instance      | ✔️ Covered       |
+| Add at runtime a rating rule instance     | ✔️ Covered       |
+| Create at runtime a rating rule instance from templates and values | ✔️ Covered       |
+| update at runtime a rating rule template/value     | ❌ Not Covered   |
 
 ## Uninstallation
 
