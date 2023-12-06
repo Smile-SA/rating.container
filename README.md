@@ -73,9 +73,9 @@ Creates a rating rules instance from a rating rules template and a rating rule v
   ```
   or 
 
-    ```bash
+  ```bash
     ./rating_rules_manager -t /path/to/template.yaml -v /path/to/value.yaml -i /path/to/instance.yaml
-     ```
+  ```
 
 
 
