@@ -65,16 +65,17 @@ adds a new rating rule instance, and exposes it to prometheus.
   ```
 
 - **Instance creation from template and value:** 
+
 Creates a rating rules instance from a rating rules template and a rating rule value.
 
   ```bash
   ./rating_rules_manager --templates /path/to/template.yaml --values /path/to/value.yaml --instance /path/to/instance.yaml
   ```
-or 
+  or 
 
-  ```bash
-  ./rating_rules_manager -t /path/to/template.yaml -v /path/to/value.yaml -i /path/to/instance.yaml
-  ```
+    ```bash
+    ./rating_rules_manager -t /path/to/template.yaml -v /path/to/value.yaml -i /path/to/instance.yaml
+     ```
 
 
 
