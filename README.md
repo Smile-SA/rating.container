@@ -5,7 +5,15 @@
 
 
 
-This service is designed for docker environments, if you wish to test this service, you should have docker on your machine. 
+This service is designed for docker environments, if you wish to test this service, you should have docker on your machine.
+
+### Architecture
+
+
+![rating-docker](documentation/img/architecture.png)
+
+
+
 
 ## **Installation**
 
@@ -169,6 +177,11 @@ Each file in represents a country, i.e. :
 
  Grafana is accessible at [http://localhost:3000](http://localhost:3000). Login with the provided credentials (admin/admin).
 
+
+![carbon-simulation](documentation/img/c1.png)
+
+
+
 ## Use Case Coverage
 
 | Use Case                   | Status          |
@@ -181,6 +194,13 @@ Each file in represents a country, i.e. :
 | Create at runtime a rating rule instance from templates and values | ✔️ Covered       |
 | update at runtime a rating rule template/value     | ❌ Not Covered   |
 
+
+
+
+
+
+
+
 ## Uninstallation
 
 To stop and remove the Docker containers, use:
@@ -188,13 +208,6 @@ To stop and remove the Docker containers, use:
 ```bash
 docker-compose down
 ```
-
-
-
-
-
-
-
 
 
 
