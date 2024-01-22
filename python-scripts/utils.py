@@ -8,12 +8,16 @@ import requests
 
 
 
-def start_rating(yaml_file_path):
+def start_rating(yaml_file_path,insert=True):
+    yaml_data = None
     try:
         with open(yaml_file_path, 'r') as file:
             yaml_data = file.read()
     except FileNotFoundError:
         print(f"Error: File '{yaml_file_path}' not found.")
+    
+    if yaml_data is None:
+        return
         
 
     # Parse the YAML data
@@ -30,14 +34,16 @@ def start_rating(yaml_file_path):
     for key, value in spec.items():
         if key == 'metric':
             query = value
-            break
-        variables[key] = value
+        else:
+            variables[key] = value
 
     # Replace placeholders in 'query' with corresponding variables
     for key, value in variables.items():
         placeholder = f'{{{key}}}'
-        query = query.replace(placeholder, f'{{{value}}}')
-
+        value_str = str(value)
+        #query = query.replace(placeholder, f'{{{value}}}')
+        query = query.replace(placeholder, value_str)
+        
     query_expression = query
     
     # Define the Prometheus API URL
@@ -52,37 +58,39 @@ def start_rating(yaml_file_path):
 
     # Send the HTTP GET request to Prometheus
     response = requests.get(prometheus_url, params=params)
-
-    table_name = "metric_data"
-    columns = ['metric_name','job_name','metric_time','value']
-    # Check if the request was successful (HTTP status code 200)
-    if response.status_code == 200:
-        result = response.json()
-        if result['data']['result']:
-            
-            
-            for item in result['data']['result']:
-                #print(item)
-                #job = item['metric']['job']
-                job = item['metric']
-                values = item['value']
-                if list_of_list(values):    
-                    for val in values:
-                        all_data = [query_expression,"",val[0],val[1]]
-                        insert_into_table(table_name,columns, all_data)
+    if insert:    
+        table_name = "metric_data"
+        columns = ['metric_name','job_name','metric_time','value']
+        # Check if the request was successful (HTTP status code 200)
+        if response.status_code == 200:
+            result = response.json()
+            if result['data']['result']:
+                
+                
+                for item in result['data']['result']:
+                    #print(item)
+                    #job = item['metric']['job']
+                    job = item['metric']
+                    values = item['value']
+                    if list_of_list(values):    
+                        for val in values:
+                            all_data = [query_expression,"",val[0],val[1]]
+                            insert_into_table(table_name,columns, all_data)
+                            
+                            
+                    else:
+                        all_data = [query_expression,"",values[0],values[1]]
+                        insert_into_table(table_name, columns, all_data)
                         
-                        
-                else:
-                    all_data = [query_expression,"",values[0],values[1]]
-                    insert_into_table(table_name, columns, all_data)
-                    
 
-        else : 
-            print(f" {yaml_file_path} : rules are not applicable")        
+            else : 
+                print(f" {yaml_file_path} : rules are not applicable")        
+        else:
+            print(f"Failed to execute query. Status code: {response.status_code}")
+        return 
     else:
-        print(f"Failed to execute query. Status code: {response.status_code}")
+        return response
 
-    return 
 
 def create_instance(template_path, value_path, instance_path):
     # Load the template and value YAML files
