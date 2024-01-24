@@ -196,10 +196,9 @@ Each file in represents a country, i.e. :
 
 
 
+## Wiki
 
-
-
-
+technical aspects [Wiki](https://git.rnd.smile.fr/overboard/5gbiller/rating.docker/-/wikis/home).
 
 ## Uninstallation
 
