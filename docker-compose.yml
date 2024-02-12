@@ -60,7 +60,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - /var/lib/postgresql/14/main:/var/lib/postgresql/14/main
+      - timescaledb_data:/home/postgres/pgdata/data/
     networks:
       - monitoring_net
 
