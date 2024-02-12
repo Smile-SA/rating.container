@@ -175,10 +175,11 @@ Each file in represents a country, i.e. :
 
  Prometheus is accessible at [http://localhost:9090](http://localhost:9090).
 
- Grafana is accessible at [http://localhost:3000](http://localhost:3000). Login with the provided credentials (admin/admin).
+ Grafana is accessible at [http://localhost:3000](http://localhost:3000). Login with the provided credentials.
 
 
-![carbon-simulation](documentation/img/c1.png)
+
+![carbon-simulation](documentation/img/carbon_simulation.png)
 
 
 
