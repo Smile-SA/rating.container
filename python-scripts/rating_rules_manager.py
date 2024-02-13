@@ -48,8 +48,8 @@ if args.instance:
     if template_path and value_path:
         print(f"Template Path: {args.templates}")
         print(f"Value Path: {args.values}")
-        print(f"{args.instance} instance created")
         create_instance(template_path, value_path, instance_path)
+        print(f"{args.instance} instance created")
         start_rating(instance_path)
     else:
         print("Both templates and values paths are required to create instances.")
@@ -82,20 +82,11 @@ if args.rm:
     # Get all keys in 'spec' before 'metric'
     variables = {}
     for key, value in spec.items():
-        if key == 'metric':
-            query = value
+        if key == 'metric_name':
+            metric_name = value
             break
-        variables[key] = value
 
-    # Replace placeholders in 'query' with corresponding variables
-    for key, value in variables.items():
-        placeholder = f'{{{key}}}'
-        query = query.replace(placeholder, f'{{{value}}}')        
-        
-    else:
-        print(f"File {args.rm} not found in {folder_path}")
-
-    delete_from_table("metric_data","metric_name",query)
+    delete_from_table("metric_data","metric_name",metric_name)
     if os.path.exists(yaml_file_path):
         os.remove(yaml_file_path)
         print(f"Removed {args.rm} from {folder_path}")

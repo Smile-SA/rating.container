@@ -183,6 +183,44 @@ def insert_into_table(table_name,  columns,values):
         cursor.close()
         conn.close()
 
+def delete_from_table(table_name, column, value_of_column):
+    # Define your PostgreSQL database connection parameters
+    db_params = {
+        'dbname': 'mydatabase',
+        'user': 'myuser',
+        'password': 'mypassword',
+        'host': 'localhost'  # Typically 'localhost' for local connections
+        #'port': 'your_port'   # Default PostgreSQL port is 5432
+    }
+
+    # Connect to the PostgreSQL database
+    try:
+        conn = psycopg2.connect(**db_params)
+    except psycopg2.Error as e:
+        print(f"Error: Unable to connect to the database: {e}")
+        sys.exit(1)
+
+    # Create a cursor object to interact with the database
+    cursor = conn.cursor()
+
+    try:
+        # Construct the SQL DELETE statement dynamically
+        delete_sql = f"DELETE FROM {table_name} WHERE {column} = %s;"
+        
+        # Execute the DELETE statement with the provided value
+        cursor.execute(delete_sql, (value_of_column,))
+        
+        # Commit the transaction to save the changes
+        conn.commit()
+        #print("Data deleted successfully.")
+    except psycopg2.Error as e:
+        # Rollback the transaction in case of an error
+        conn.rollback()
+        print(f"Error: Unable to delete data: {e}")
+    finally:
+        # Close the cursor and database connection
+        cursor.close()
+        conn.close()
 
 def yaml_parser(yaml_file_path):    
     # Read the contents of the specified YAML file
