@@ -3,7 +3,7 @@ import sys
 import json
 
 
-def read_data_from_table(table_name, metric_name, output_file):
+def res2json(table_name, metric_name, output_file):
     # Define your PostgreSQL database connection parameters
     db_params = {
         'dbname': 'mydatabase',
@@ -25,7 +25,7 @@ def read_data_from_table(table_name, metric_name, output_file):
 
     try:
         # Construct the SQL SELECT statement dynamically for composite primary keys
-        select_sql = f"SELECT * FROM {table_name} WHERE metric_name='{metric_name}';"
+        select_sql = f"SELECT id, metric_name, metric_time, value FROM {table_name} WHERE metric_name='{metric_name}';" 
 
         # Execute the SELECT statement with the provided primary key values
         cursor.execute(select_sql)
@@ -60,7 +60,6 @@ def read_data_from_table(table_name, metric_name, output_file):
     cursor.close()
     conn.close()
 
-
 if __name__ == "__main__":
     if len(sys.argv) < 3:
         print("Usage: python read_from_table.py <table_name> <metric_name> <output_file>")
@@ -70,4 +69,4 @@ if __name__ == "__main__":
     metric_name = sys.argv[1]
     output_file = sys.argv[2]
 
-    read_data_from_table(table_name, metric_name, output_file)
+    res2json(table_name, metric_name, output_file)
