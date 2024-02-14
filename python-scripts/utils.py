@@ -9,17 +9,12 @@ import requests
 
 
 def start_rating(yaml_file_path,insert=True):
-    yaml_data = None
     try:
         with open(yaml_file_path, 'r') as file:
             yaml_data = file.read()
     except FileNotFoundError:
         print(f"Error: File '{yaml_file_path}' not found.")
     
-    if yaml_data is None:
-        return
-        
-
     # Parse the YAML data
     try:
         data = yaml.safe_load(yaml_data)
@@ -34,16 +29,15 @@ def start_rating(yaml_file_path,insert=True):
     for key, value in spec.items():
         if key == 'metric':
             query = value
-        else:
-            variables[key] = value
+            
+        variables[key] = value
 
     # Replace placeholders in 'query' with corresponding variables
     for key, value in variables.items():
         placeholder = f'{{{key}}}'
         value_str = str(value)
-        #query = query.replace(placeholder, f'{{{value}}}')
         query = query.replace(placeholder, value_str)
-        
+
     query_expression = query
     
     # Define the Prometheus API URL
@@ -60,7 +54,7 @@ def start_rating(yaml_file_path,insert=True):
     response = requests.get(prometheus_url, params=params)
     if insert:    
         table_name = "metric_data"
-        columns = ['metric_name','job_name','metric_time','value']
+        columns = ['metric_name','prom_query','job_name','metric_time','value']
         # Check if the request was successful (HTTP status code 200)
         if response.status_code == 200:
             result = response.json()
@@ -68,18 +62,16 @@ def start_rating(yaml_file_path,insert=True):
                 
                 
                 for item in result['data']['result']:
-                    #print(item)
-                    #job = item['metric']['job']
                     job = item['metric']
                     values = item['value']
                     if list_of_list(values):    
                         for val in values:
-                            all_data = [query_expression,"",val[0],val[1]]
+                            all_data = [variables['metric_name'],query_expression,"",val[0],val[1]]
                             insert_into_table(table_name,columns, all_data)
                             
                             
                     else:
-                        all_data = [query_expression,"",values[0],values[1]]
+                        all_data = [variables['metric_name'],query_expression,"",values[0],values[1]]
                         insert_into_table(table_name, columns, all_data)
                         
 

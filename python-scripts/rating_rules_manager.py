@@ -79,7 +79,7 @@ if args.rm:
     # Extract variables from the 'spec' element
     spec = data.get('spec', {})
 
-    # Get all keys in 'spec' before 'metric'
+    
     variables = {}
     for key, value in spec.items():
         if key == 'metric_name':
