@@ -26,7 +26,7 @@ def check_rating_result(result, inf_threshold, sup_threshold):
 
 def main():
     if len(sys.argv) != 4:
-        print("Usage: python script.py <yaml_file_path> <inf_threshold> <sup_threshold>")
+        print("Usage: python3 test_rating_result.py <yaml_file_path> <inf_threshold> <sup_threshold>")
         sys.exit(1)
 
     yaml_file_path = sys.argv[1]
