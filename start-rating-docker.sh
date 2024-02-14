@@ -9,6 +9,6 @@ source config.env
 RULES_FOLDER_VALUE=$RULES_FOLDER
 
 #
-./rating_rules_manager.py $RULES_FOLDER_VALUE
+./python-scripts/rating_rules_manager.py $RULES_FOLDER_VALUE
 
 
