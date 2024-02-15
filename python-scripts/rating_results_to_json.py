@@ -4,7 +4,7 @@ import json
 
 
 def res2json(table_name, metric_name, output_file):
-    # Define your PostgreSQL database connection parameters
+    
     db_params = {
         'dbname': 'mydatabase',
         'user': 'myuser',
