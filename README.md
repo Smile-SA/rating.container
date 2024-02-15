@@ -51,7 +51,7 @@ chmod +x python-scripts/test_rating_results.py
 This script launches the necessary services defined in the `docker-compose.yml` file, including Prometheus, Grafana, Node Exporter, and TimescaleDB. And exposes rating rules defined in the configuration file to prometheus.
 
 - Prometheus is accessible at [http://localhost:9090](http://localhost:9090).
-- Grafana is accessible at [http://localhost:3000](http://localhost:3000). Login with the provided credentials (admin/admin).
+- Grafana is accessible at [http://localhost:3000](http://localhost:3000). 
 
 
 ## **Runtime options**
