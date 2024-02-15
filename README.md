@@ -154,9 +154,6 @@ scrape_configs:
 	static_configs:
   	- targets: ['localhost:9090']
 
-storage:
-  tsdb:
-	retention: 30d
 ```
 
 
@@ -166,11 +163,11 @@ storage:
 The `rating-rules` repository contains four rating rules instances which transform system resources into CO2.
 
 Each file in represents a country, i.e. : 
-- rating-carbon-FRANCE-instance.yaml : france
+- rating-carbon-FRANCE-instance.yaml : France
 
-- rating-carbon-ITALY-instance.yaml : italy
+- rating-carbon-ITALY-instance.yaml : Italy
 
-- rating-carbon-DEUTCH-instance.yaml : germany
+- rating-carbon-DEUTCH-instance.yaml : Germany
 
 - rating-carbon-EUROPE-instance.yaml : EU.
 
@@ -183,8 +180,7 @@ Each file in represents a country, i.e. :
 
  Prometheus is accessible at [http://localhost:9090](http://localhost:9090).
 
- Grafana is accessible at [http://localhost:3000](http://localhost:3000). Login with the provided credentials.
-
+ Grafana is accessible at [http://localhost:3000](http://localhost:3000).
 
 
 ![carbon-simulation](documentation/img/carbon_simulation.png)
