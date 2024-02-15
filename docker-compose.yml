@@ -14,7 +14,7 @@ services:
 
 
   node-exporter:
-    image: quay.io/prometheus/node-exporter:v1.3.1  # Specify the desired version here
+    image: quay.io/prometheus/node-exporter:v1.3.1  
     container_name: node-exporter
     volumes:
       - /etc/prometheus/node_exporter.yml:/etc/prometheus/node_exporter.yml  # Mount the node_exporter configuration file
@@ -22,7 +22,7 @@ services:
       - /sys:/host/sys:ro
       - /:/rootfs:ro
     command:
-      - "--collector.textfile.directory=/etc/prometheus"   # Specify the path to the configuration file
+      - "--collector.textfile.directory=/etc/prometheus"  
     ports:
       - "9100:9100"
     networks:
@@ -44,8 +44,8 @@ services:
       - prometheus
    
     networks:
-      - monitoring_net  # Add this line
-    
+      - monitoring_net  
+  
  
 
 
@@ -53,9 +53,9 @@ services:
     image: timescale/timescaledb-ha:pg14-latest
     container_name: timescaledb
     environment:
-      - POSTGRES_PASSWORD=mypassword  # Replace with your desired password
-      - POSTGRES_DB=mydatabase  # Replace with your desired database name
-      - POSTGRES_USER=myuser  # Replace with your desired username
+      - POSTGRES_PASSWORD=mypassword  
+      - POSTGRES_DB=mydatabase  
+      - POSTGRES_USER=myuser  
       
     ports:
       - "5432:5432"
@@ -66,7 +66,7 @@ services:
 
 networks:
   monitoring_net:
-    driver : bridge  # Define the user-defined network
+    driver : bridge  
 
 
 volumes:
