@@ -1,0 +1,30 @@
+# Node Exporter configuration file
+
+# The list of collectors to be enabled
+collectors:
+  - buddyinfo
+  - cgroups
+  - cpu_vulnerabilities
+  - drm
+  - drbd
+  - ethtool
+  - interrupts
+  - ksmd
+  - lnstat
+  - logind
+  - meminfo_numa
+  - mountstats
+  - network_route
+  - perf
+  - processes
+  - qdisc
+  - slabinfo
+  - softirqs
+  - sysctl
+  - systemd
+  - tcpstat
+
+
+# A list of textfile collector directories
+# textfile collectors allow exposing metrics from static files
+# textfile_directory: /var/lib/node_exporter/textfile_collector
