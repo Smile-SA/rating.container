@@ -30,7 +30,10 @@ Here is the list of prerequisites to be able to start `rating-docker`.
 
 ```bash
 git clone https://git.rnd.smile.fr/overboard/5gbiller/rating.docker.git
+```
 
+
+```bash
 cd rating.docker
 
 chmod +x start-rating-docker.sh
@@ -41,6 +44,9 @@ chmod +x python-scripts/rating_results_to_json.py
 
 chmod +x python-scripts/test_rating_results.py
 ```
+
+
+
 ### Start Rating Docker 
 
 
