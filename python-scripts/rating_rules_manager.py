@@ -14,7 +14,7 @@ import argparse
 
 # Create an ArgumentParser object
 parser = argparse.ArgumentParser(description="Prometheus Metric Script")
-parser.add_argument("folder_path", nargs='?', default='./rules_folder', type=str, help="The path to the folder containing YAML files (default is current directory)")
+parser.add_argument("folder_path", nargs='?', default='./rating-rules', type=str, help="The path to the folder containing YAML files (default is current directory)")
 parser.add_argument("--add", metavar="filename", type=str, help="Add a YAML file to the folder")
 parser.add_argument("--rm", metavar="filename", type=str, help="Remove a YAML file from rating rules")
 parser.add_argument("--update", metavar="filename", type=str, help="Update a YAML file from rating rules")
