@@ -82,7 +82,7 @@ if args.rm:
     
     variables = {}
     for key, value in spec.items():
-        if key == 'name':
+        if key == 'metric_name':
             metric_name = value
             break
 
