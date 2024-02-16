@@ -9,5 +9,4 @@ chmod +x python-scripts/create_table.py
 cp prometheus.yml /etc/prometheus
 cp node_exporter.yml /etc/prometheus
 
-# Run the create_table.py script
-./python-scripts/create_table.py
+pip install -r requirements.txt
