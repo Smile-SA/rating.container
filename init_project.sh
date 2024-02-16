@@ -6,6 +6,7 @@ chmod +x python-scripts/rating_rules_manager.py
 chmod +x python-scripts/rating_results_to_json.py
 chmod +x python-scripts/test_rating_results.py
 chmod +x python-scripts/create_table.py
+mkdir /etc/prometheus
 cp prometheus.yml /etc/prometheus
 cp node_exporter.yml /etc/prometheus
 

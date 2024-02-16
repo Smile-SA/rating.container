@@ -81,7 +81,7 @@ def start_rating(yaml_file_path,insert=True):
             print(f"Failed to execute query. Status code: {response.status_code}")
         return 
     else:
-        return response
+        return response.json()
 
 
 def create_instance(template_path, value_path, instance_path):

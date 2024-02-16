@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import psycopg2
 import sys
 import json
@@ -62,7 +63,7 @@ def res2json(table_name, metric_name, output_file):
 
 if __name__ == "__main__":
     if len(sys.argv) < 3:
-        print("Usage: python read_from_table.py <table_name> <metric_name> <output_file>")
+        print("Usage: ./rating_results_to_json.py  <metric_name> <output_file>")
         sys.exit(1)
 
     table_name = "metric_data" #sys.argv[1]
