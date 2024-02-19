@@ -7,10 +7,7 @@
 
 This service is designed for docker environments, if you wish to test this service, you should have docker on your machine.
 
-### Architecture
 
-
-![rating-docker](documentation/img/last.png)
 
 
 
@@ -204,7 +201,10 @@ import [carbon_dashboard.json](https://git.rnd.smile.fr/overboard/5gbiller/ratin
 | Create at runtime a rating rule instance from templates and values | ✔️ Covered       |
 | update at runtime a rating rule template/value     | ❌ Not Covered   |
 
+### Architecture
 
+
+![rating-docker](documentation/img/last.png)
 
 ## Wiki
 
