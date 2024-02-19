@@ -10,7 +10,7 @@ This service is designed for docker environments, if you wish to test this servi
 ### Architecture
 
 
-![rating-docker](documentation/img/architecture.png)
+![rating-docker](documentation/img/last.png)
 
 
 
