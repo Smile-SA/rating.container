@@ -14,4 +14,6 @@ if [ ! -d "/etc/prometheus" ]; then
 fi
 cp prometheus.yml /etc/prometheus
 cp node_exporter.yml /etc/prometheus
+# Install libpq-dev
+sudo apt-get install libpq-dev
 pip install -r requirements.txt
