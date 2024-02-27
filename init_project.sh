@@ -10,10 +10,10 @@ chmod +x python-scripts/create_table.py
 # Check if /etc/prometheus directory exists
 if [ ! -d "/etc/prometheus" ]; then
     # If not, create the directory and copy files
-    mkdir /etc/prometheus        
+    sudo mkdir /etc/prometheus        
 fi
-cp prometheus.yml /etc/prometheus
-cp node_exporter.yml /etc/prometheus
+sudo cp prometheus.yml /etc/prometheus
+sudo cp node_exporter.yml /etc/prometheus
 # Install libpq-dev
 sudo apt-get install libpq-dev
 pip install -r requirements.txt

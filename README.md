@@ -35,7 +35,7 @@ cd rating.docker
 ```bash
 chmod +x init_project.sh
 
-sudo ./init_project.sh
+./init_project.sh
 ```
 
 
@@ -44,7 +44,7 @@ sudo ./init_project.sh
 
 
 ```bash
-sudo ./start-rating-docker.sh
+./start-rating-docker.sh
 ```
 
 This script launches the necessary services defined in the `docker-compose.yml` file, including Prometheus, Grafana, Node Exporter, and TimescaleDB. And exposes rating rules defined in the configuration file to prometheus.
