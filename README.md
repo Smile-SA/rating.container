@@ -27,16 +27,15 @@ Here is the list of prerequisites to be able to start `rating-docker`.
 
 ```bash
 git clone https://git.rnd.smile.fr/overboard/5gbiller/rating.docker.git
+
+cd rating.docker
 ```
 
 
 ```bash
-cd rating.docker
-
 chmod +x init_project.sh
 
-./init_project.sh
-
+sudo ./init_project.sh
 ```
 
 
@@ -45,7 +44,7 @@ chmod +x init_project.sh
 
 
 ```bash
-./start-rating-docker.sh
+sudo ./start-rating-docker.sh
 ```
 
 This script launches the necessary services defined in the `docker-compose.yml` file, including Prometheus, Grafana, Node Exporter, and TimescaleDB. And exposes rating rules defined in the configuration file to prometheus.
