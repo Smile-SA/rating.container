@@ -200,14 +200,10 @@ import [carbon_dashboard.json](https://git.rnd.smile.fr/overboard/5gbiller/ratin
 | Create at runtime a rating rule instance from templates and values | ✔️ Covered       |
 | update at runtime a rating rule template/value     | ❌ Not Covered   |
 
-### Architecture
-
-
-![rating-docker](documentation/img/last.png)
 
 ## Wiki
 
-technical aspects [Wiki](https://git.rnd.smile.fr/overboard/5gbiller/rating.docker/-/wikis/home).
+technical aspects & architecture [Wiki](https://git.rnd.smile.fr/overboard/5gbiller/rating.docker/-/wikis/home).
 
 ## Uninstallation
 
