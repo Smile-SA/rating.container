@@ -48,21 +48,21 @@ chmod +x init_project.sh
 
 
 ### Start Rating Docker 
+The script `start-rating-docker.sh` launches the necessary services defined in the `docker-compose.yml` file, including Prometheus, Grafana, Node Exporter, and TimescaleDB.
+
+
 
 ```bash
 sudo -E env PATH=$PATH ./start-rating-docker.sh
 ```
 
-This script launches the necessary services defined in the `docker-compose.yml` file, including Prometheus, Grafana, Node Exporter, and TimescaleDB.
-- Prometheus is accessible at [http://localhost:9090](http://localhost:9090).
-- Grafana is accessible at [http://localhost:3000](http://localhost:3000). 
-
-
-
 Database initialization :  
 ```bash
 ./python-scripts/create_table.py
 ```
+
+
+
 ### Apply rating rules 
 
 ```bash
