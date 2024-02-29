@@ -58,6 +58,11 @@ This script launches the necessary services defined in the `docker-compose.yml` 
 - Grafana is accessible at [http://localhost:3000](http://localhost:3000). 
 
 
+
+Database initialization :  
+```bash
+./python-scripts/create_table.py
+```
 ### Apply rating rules 
 
 ```bash
