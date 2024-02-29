@@ -26,15 +26,22 @@ Here is the list of prerequisites to be able to start `rating-docker`.
 ### Clone the Repository
 
 ```bash
-git clone https://git.rnd.smile.fr/overboard/5gbiller/rating.docker.git
-
-cd rating.docker
+git clone the project and cd into it.
 ```
+### Requirements
+Python3 installation
+`
+sudo apt install python3
+`
 
+Pip installation
+`
+sudo apt install python3-pip
+`
 
+Installation of project requirements : 
 ```bash
 chmod +x init_project.sh
-
 ./init_project.sh
 ```
 
@@ -42,16 +49,22 @@ chmod +x init_project.sh
 
 ### Start Rating Docker 
 
-
 ```bash
-./start-rating-docker.sh
+sudo -E env PATH=$PATH ./start-rating-docker.sh
 ```
 
-This script launches the necessary services defined in the `docker-compose.yml` file, including Prometheus, Grafana, Node Exporter, and TimescaleDB. And exposes rating rules defined in the configuration file to prometheus.
-
+This script launches the necessary services defined in the `docker-compose.yml` file, including Prometheus, Grafana, Node Exporter, and TimescaleDB.
 - Prometheus is accessible at [http://localhost:9090](http://localhost:9090).
 - Grafana is accessible at [http://localhost:3000](http://localhost:3000). 
 
+
+### Apply rating rules 
+
+```bash
+./python-scripts/rating_rules_manager.py rating-rules
+```
+
+This command exposes rating rules defined in the configuration file to prometheus.
 
 ## **Runtime options**
 
