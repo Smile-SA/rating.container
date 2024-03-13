@@ -1,6 +1,6 @@
 #!/bin/bash
 
 # Start the containers
-docker-compose up -d
+sudo docker-compose up -d
 
-sleep 5
+sleep 3

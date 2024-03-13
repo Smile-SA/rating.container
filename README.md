@@ -53,7 +53,7 @@ The script `start-rating-docker.sh` launches the necessary services defined in t
 
 
 ```bash
-sudo -E env PATH=$PATH ./start-rating-docker.sh
+./start-rating-docker.sh
 ```
 
 Database initialization :  
