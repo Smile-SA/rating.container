@@ -19,8 +19,7 @@ Follow these steps to get the project up and running:
 Here is the list of prerequisites to be able to start `rating-docker`.
 
 
-- [Docker](https://www.docker.com/get-started)
-- [Docker Compose](https://docs.docker.com/compose/install/)
+- [Docker Compose](https://doc.ubuntu-fr.org/docker-compose)
 
 
 ### Clone the Repository
@@ -82,19 +81,19 @@ adds a new rating rule instance, and exposes it to prometheus.
  
 
   ```bash
-  ./rating_rules_manager.py --add /path/to/rating/rule.yaml
+  ./python-scripts/rating_rules_manager.py --add /path/to/rating/rule.yaml
   ```
 
 - **Remove option :** Removes an existing rating rule instance
 
   ```bash
-  ./rating_rules_manager.py --rm /path/to/rating/rule.yaml 
+  ./python-scripts/rating_rules_manager.py --rm /path/to/rating/rule.yaml 
   ```
 
 - **Update option :**  updates an existing rating rule instance, and exposes it to prometheus.  
 
   ```bash
-  ./rating_rules_manager.py --update /path/to/rating/rule.yaml 
+  ./python-scripts/rating_rules_manager.py --update /path/to/rating/rule.yaml 
   ```
 
 - **Instance creation from template and value:** 
@@ -102,22 +101,22 @@ adds a new rating rule instance, and exposes it to prometheus.
 Creates a rating rules instance from a rating rules template and a rating rule value.
 
   ```bash
-  ./rating_rules_manager --templates /path/to/template.yaml --values /path/to/value.yaml --instance /path/to/instance.yaml
+  ./python-scripts/rating_rules_manager.py --templates /path/to/template.yaml --values /path/to/value.yaml --instance /path/to/instance.yaml
   ```
   or 
 
   ```bash
-    ./rating_rules_manager -t /path/to/template.yaml -v /path/to/value.yaml -i /path/to/instance.yaml
+    ./python-scripts/rating_rules_manager.py -t /path/to/template.yaml -v /path/to/value.yaml -i /path/to/instance.yaml
   ```
 
 | Option            | Description                                                           | Example Usage                                      |
 |-------------------|-----------------------------------------------------------------------|-----------------------------------------------------|
-| `--add`           | Adds a new rating rule instance and exposes it to Prometheus.         | `./rating_rules_manager.py --add /path/to/rating/rule.yaml` |
-| `--rm`            | Removes an existing rating rule instance.                             | `./rating_rules_manager.py --rm /path/to/rating/rule.yaml` |
-| `--update`        | Updates an existing rating rule instance and exposes it to Prometheus.| `./rating_rules_manager.py --update /path/to/rating/rule.yaml` |
-| `-t` or `--templates` | Path to rating rules template(s) for instance creation.             | `./rating_rules_manager.py -t /path/to/template.yaml -v /path/to/value.yaml -i /path/to/instance.yaml` |
-| `-v` or `--values` | Path to rating rules value(s) for instance creation.                 | `./rating_rules_manager.py -t /path/to/template.yaml -v /path/to/value.yaml -i /path/to/instance.yaml` |
-| `-i` or `--instance`| Path to store the created rating rule instance.                      | `./rating_rules_manager.py -t /path/to/template.yaml -v /path/to/value.yaml -i /path/to/instance.yaml` |
+| `--add`           | Adds a new rating rule instance and exposes it to Prometheus.         | `./python-scripts/rating_rules_manager.py --add /path/to/rating/rule.yaml` |
+| `--rm`            | Removes an existing rating rule instance.                             | `./python-scripts/rating_rules_manager.py --rm /path/to/rating/rule.yaml` |
+| `--update`        | Updates an existing rating rule instance and exposes it to Prometheus.| `./python-scripts/rating_rules_manager.py --update /path/to/rating/rule.yaml` |
+| `-t` or `--templates` | Path to rating rules template(s) for instance creation.             | `./python-scripts/rating_rules_manager.py-t /path/to/template.yaml -v /path/to/value.yaml -i /path/to/instance.yaml` |
+| `-v` or `--values` | Path to rating rules value(s) for instance creation.                 | `./python-scripts/rating_rules_manager.py -t /path/to/template.yaml -v /path/to/value.yaml -i /path/to/instance.yaml` |
+| `-i` or `--instance`| Path to store the created rating rule instance.                      | `./python-scripts/rating_rules_manager.py -t /path/to/template.yaml -v /path/to/value.yaml -i /path/to/instance.yaml` |
 
 
 
@@ -138,6 +137,17 @@ Use `config.env` to define the path to the rating rules.
 
 RULES_FOLDER=./rating-rules  
 ```
+## Accessing services
+- API :
+
+  ```bash
+   python3 python-scripts/json-api/app.py
+  ```
+  * [http://localhost:5000/metrics](http://localhost:5000/metrics) : lists the metrics available in json format.
+  * [http://localhost:5000/metrics/\<matric_name\>](http://localhost:5000/metrics/%3Cmatric_name%3E) : return the rating results for the metric provided as parameters, in json format.
+
+- Prometheus is accessible at [http://localhost:9090](http://localhost:9090).
+- Grafana is accessible at [http://localhost:3000](http://localhost:3000).
 
 ## Configuration details
 ##### **Node exporter configuration**
