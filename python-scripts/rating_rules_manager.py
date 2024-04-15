@@ -61,7 +61,7 @@ if args.update:
 
 
 if args.rm:
-    yaml_file_path = os.path.join(folder_path, args.rm)
+    yaml_file_path = args.rm #os.path.join(folder_path, args.rm)
     # Read the contents of the YAML file
     try:
         with open(yaml_file_path, 'r') as file:
