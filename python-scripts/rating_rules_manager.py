@@ -97,7 +97,7 @@ if args.add:
     yaml_file_path = args.add
     if os.path.exists(yaml_file_path):
         # Construct the destination path in the folder
-        destination_path = os.path.join(folder_path, os.path.basename(yaml_file_path))
+        destination_path = os.path.join(folder_path+"/applied_instances", os.path.basename(yaml_file_path))
 
         # Copy the file to the destination folder
         shutil.copy(yaml_file_path, destination_path)
