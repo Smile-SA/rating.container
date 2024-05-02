@@ -18,7 +18,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 17,
+  "id": 1,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -29,7 +29,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "e339eb34-a508-4381-9d6e-256a7e80f989"
+        "uid": "bdk6jvy3mvbwgc"
       },
       "fill": 1,
       "fillGradient": 0,
@@ -57,7 +57,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "10.1.4",
+      "pluginVersion": "10.4.2",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -72,7 +72,7 @@
             "uid": "e339eb34-a508-4381-9d6e-256a7e80f989"
           },
           "editorMode": "code",
-          "expr": "((ceil(sum(node_memory_Active_anon_bytes) * max(node_memory_MemTotal_bytes)/(1024*1024*1024))) + (ceil(sum(node_cpu_core_throttles_total)* max(node_cpu_package_throttles_total))) + sum(prometheus_remote_storage_samples_in_total)) * 220/1000 * 0.238 / 1000000",
+          "expr": "((ceil(sum(node_memory_Active_anon_bytes) * max(node_memory_MemTotal_bytes)/(1024*1024*1024)))\n    + (ceil(sum(prometheus_remote_storage_samples_in_total) * max(prometheus_remote_storage_samples_in_total)))\n    + sum(prometheus_remote_storage_samples_in_total)) * 220/1000 *0.238 / 1000000",
           "interval": "1m",
           "legendFormat": "{{instance}}",
           "range": true,
@@ -118,7 +118,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "e339eb34-a508-4381-9d6e-256a7e80f989"
+        "uid": "bdk6jvy3mvbwgc"
       },
       "fill": 1,
       "fillGradient": 0,
@@ -146,7 +146,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "10.1.4",
+      "pluginVersion": "10.4.2",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -161,7 +161,7 @@
             "uid": "e339eb34-a508-4381-9d6e-256a7e80f989"
           },
           "editorMode": "code",
-          "expr": "((ceil(sum(node_memory_Active_anon_bytes) * max(node_memory_MemTotal_bytes)/(1024*1024*1024))) + (ceil(sum(node_cpu_core_throttles_total)* max(node_cpu_package_throttles_total))) + sum(prometheus_remote_storage_samples_in_total)) * 220/1000 * 0.253 / 1000000",
+          "expr": "((ceil(sum(node_memory_Active_anon_bytes) * max(node_memory_MemTotal_bytes)/(1024*1024*1024)))\n    + (ceil(sum(prometheus_remote_storage_samples_in_total) * max(prometheus_remote_storage_samples_in_total)))\n    + sum(prometheus_remote_storage_samples_in_total)) * 220/1000 *0.253 / 1000000",
           "interval": "1m",
           "legendFormat": "{{instance}}",
           "range": true,
@@ -207,7 +207,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "e339eb34-a508-4381-9d6e-256a7e80f989"
+        "uid": "bdk6jvy3mvbwgc"
       },
       "fill": 1,
       "fillGradient": 0,
@@ -235,7 +235,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "10.1.4",
+      "pluginVersion": "10.4.2",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -250,9 +250,9 @@
             "uid": "e339eb34-a508-4381-9d6e-256a7e80f989"
           },
           "editorMode": "code",
-          "expr": "((ceil(sum(node_memory_Active_anon_bytes) * max(node_memory_MemTotal_bytes)/(1024*1024*1024))) + (ceil(sum(node_cpu_core_throttles_total)* max(node_cpu_package_throttles_total))) + sum(prometheus_remote_storage_samples_in_total)) * 220/1000 * 0.28 / 1000000",
+          "expr": "((ceil(sum(node_memory_Active_anon_bytes) * max(node_memory_MemTotal_bytes)/(1024*1024*1024)))\n    + (ceil(sum(prometheus_remote_storage_samples_in_total) * max(prometheus_remote_storage_samples_in_total)))\n    + sum(prometheus_remote_storage_samples_in_total)) * 220/1000 *0.28 / 1000000",
           "interval": "1m",
-          "legendFormat": "{{instance}}",
+          "legendFormat": "__auto",
           "range": true,
           "refId": "A"
         }
@@ -296,7 +296,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "e339eb34-a508-4381-9d6e-256a7e80f989"
+        "uid": "bdk6jvy3mvbwgc"
       },
       "fill": 1,
       "fillGradient": 0,
@@ -324,7 +324,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "10.1.4",
+      "pluginVersion": "10.4.2",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -339,7 +339,7 @@
             "uid": "e339eb34-a508-4381-9d6e-256a7e80f989"
           },
           "editorMode": "code",
-          "expr": "((ceil(sum(node_memory_Active_anon_bytes) * max(node_memory_MemTotal_bytes)/(1024*1024*1024))) + (ceil(sum(node_cpu_core_throttles_total)* max(node_cpu_package_throttles_total))) + sum(prometheus_remote_storage_samples_in_total)) * 220/1000 * 0.297 / 1000000",
+          "expr": "((ceil(sum(node_memory_Active_anon_bytes) * max(node_memory_MemTotal_bytes)/(1024*1024*1024)))\n    + (ceil(sum(prometheus_remote_storage_samples_in_total) * max(prometheus_remote_storage_samples_in_total)))\n    + sum(prometheus_remote_storage_samples_in_total)) * 220/1000 *0.297 / 1000000",
           "interval": "1m",
           "legendFormat": "{{instance}}",
           "range": true,
@@ -380,8 +380,7 @@
     }
   ],
   "refresh": "",
-  "schemaVersion": 38,
-  "style": "dark",
+  "schemaVersion": 39,
   "tags": [],
   "templating": {
     "list": []
@@ -394,6 +393,6 @@
   "timezone": "",
   "title": "Carbon Dashboard",
   "uid": "f821618e-6003-417a-a6fa-2e076164724a",
-  "version": 4,
+  "version": 2,
   "weekStart": ""
 }

@@ -89,7 +89,7 @@ if args.rm:
     delete_from_table("metric_data","metric_name",metric_name)
     if os.path.exists(yaml_file_path):
         os.remove(yaml_file_path)
-        print(f"Removed {args.rm} from {folder_path}")
+        print(f" {args.rm} Removed")
 
 if args.add:
     # Code to add the YAML file specified by --add
@@ -101,7 +101,7 @@ if args.add:
 
         # Copy the file to the destination folder
         shutil.copy(yaml_file_path, destination_path)
-        print(f"File {os.path.basename(yaml_file_path)} added to {folder_path}")
+        print(f"File {os.path.basename(yaml_file_path)} added to {folder_path}"/applied_instances"")
     else:
         print(f"Error: The specified file {yaml_file_path} does not exist.")
 
