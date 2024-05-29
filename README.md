@@ -202,15 +202,14 @@ Each file in represents a country, i.e. :
 
 
 
+```bash
+./python-scripts/init_dashboard.py
+```
 
-
-
- Prometheus is accessible at [http://localhost:9090](http://localhost:9090).
 
  Grafana is accessible at [http://localhost:3000](http://localhost:3000).
 
 
-import [carbon_dashboard.json](https://git.rnd.smile.fr/overboard/5gbiller/rating.docker/-/blob/main/grafana_dashboard/carbon_dashboard.json?ref_type=heads) on Grafana
 
 ![carbon-simulation](documentation/img/carbon_simulation.png)
 

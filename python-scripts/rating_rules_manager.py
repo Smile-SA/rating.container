@@ -93,7 +93,7 @@ if args.rm:
 
 if args.add:
     # Code to add the YAML file specified by --add
-    print(f"Adding {args.add} to {folder_path}")
+    print(f"Adding {args.add} to {folder_path}/applied_instances")
     yaml_file_path = args.add
     if os.path.exists(yaml_file_path):
         # Construct the destination path in the folder
@@ -101,7 +101,7 @@ if args.add:
 
         # Copy the file to the destination folder
         shutil.copy(yaml_file_path, destination_path)
-        print(f"File {os.path.basename(yaml_file_path)} added to {folder_path}"/applied_instances"")
+        print(f"File {os.path.basename(yaml_file_path)} added to {folder_path}/applied_instances")
     else:
         print(f"Error: The specified file {yaml_file_path} does not exist.")
 
@@ -116,5 +116,4 @@ if args.folder_path and not args.add and not args.rm and not args.update:
             yaml_file_path = os.path.join(folder_path, filename)
             start_rating(yaml_file_path)
             
-                
 
