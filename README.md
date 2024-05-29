@@ -237,8 +237,14 @@ technical aspects & architecture [Wiki](https://git.rnd.smile.fr/overboard/5gbil
 To stop and remove the Docker containers, use:
 
 ```bash
-docker-compose down
+chmod +x uninstall.sh
+
+sudo ./uninstall.sh 
 ```
 
+## License ##
 
+This project is under license from MIT. For more details, see the [LICENSE](/LICENSE) file.
 
+## Credits
+Team RnD @ Smile
