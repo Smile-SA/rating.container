@@ -164,8 +164,8 @@ Each file in represents a country, i.e. :
 ```
 
 
- Grafana is accessible at [http://localhost:3000](http://localhost:3000).
-
+ Grafana is accessible at [http://localhost:3000](http://localhost:3000). (first authentication:  user : admin password : admin
+)
 
 
 ![carbon-simulation](documentation/img/carbon_simulation.png)
