@@ -137,6 +137,39 @@ Use `config.env` to define the path to the rating rules.
 
 RULES_FOLDER=./rating-rules  
 ```
+
+
+
+
+## Minimal example
+
+
+The `rating-rules` repository contains four rating rules instances which transform system resources into CO2.
+
+Each file in represents a country, i.e. : 
+- rating-carbon-FRANCE-instance.yaml : France
+
+- rating-carbon-ITALY-instance.yaml : Italy
+
+- rating-carbon-DEUTCH-instance.yaml : Germany
+
+- rating-carbon-EUROPE-instance.yaml : EU.
+
+
+
+
+
+```bash
+./python-scripts/init_dashboard.py
+```
+
+
+ Grafana is accessible at [http://localhost:3000](http://localhost:3000).
+
+
+
+![carbon-simulation](documentation/img/carbon_simulation.png)
+
 ## Accessing services
 - API :
 
@@ -148,6 +181,19 @@ RULES_FOLDER=./rating-rules
 
 - Prometheus is accessible at [http://localhost:9090](http://localhost:9090).
 - Grafana is accessible at [http://localhost:3000](http://localhost:3000).
+
+
+## Use Case Coverage
+
+| Use Case                   | Status          |
+|----------------------------|-----------------|
+| Start witout rating rules instances        | ✔️ Covered       |
+| Start with rating rules instances        | ✔️ Covered       |
+| Remove at runtime a rating rule instance      | ✔️ Covered       |
+| Update at runtime a rating rule instance      | ✔️ Covered       |
+| Add at runtime a rating rule instance     | ✔️ Covered       |
+| Create at runtime a rating rule instance from templates and values | ✔️ Covered       |
+| update at runtime a rating rule template/value     | ❌ Not Covered   |
 
 ## Configuration details
 ##### **Node exporter configuration**
@@ -182,52 +228,6 @@ scrape_configs:
   	- targets: ['localhost:9090']
 
 ```
-
-
-## Minimal example
-
-
-The `rating-rules` repository contains four rating rules instances which transform system resources into CO2.
-
-Each file in represents a country, i.e. : 
-- rating-carbon-FRANCE-instance.yaml : France
-
-- rating-carbon-ITALY-instance.yaml : Italy
-
-- rating-carbon-DEUTCH-instance.yaml : Germany
-
-- rating-carbon-EUROPE-instance.yaml : EU.
-
-
-
-
-
-```bash
-./python-scripts/init_dashboard.py
-```
-
-
- Grafana is accessible at [http://localhost:3000](http://localhost:3000).
-
-
-
-![carbon-simulation](documentation/img/carbon_simulation.png)
-
-
-
-## Use Case Coverage
-
-| Use Case                   | Status          |
-|----------------------------|-----------------|
-| Start witout rating rules instances        | ✔️ Covered       |
-| Start with rating rules instances        | ✔️ Covered       |
-| Remove at runtime a rating rule instance      | ✔️ Covered       |
-| Update at runtime a rating rule instance      | ✔️ Covered       |
-| Add at runtime a rating rule instance     | ✔️ Covered       |
-| Create at runtime a rating rule instance from templates and values | ✔️ Covered       |
-| update at runtime a rating rule template/value     | ❌ Not Covered   |
-
-
 ## Wiki
 
 technical aspects & architecture [Wiki](https://git.rnd.smile.fr/overboard/5gbiller/rating.docker/-/wikis/home).
