@@ -44,7 +44,7 @@ if __name__ == "__main__":
         'dbname': 'mydatabase',
         'user': 'myuser',
         'password': 'mypassword',
-        'host': 'localhost',
+        'host': '0.0.0.0',
         #'port': '5432' Default PostgreSQL port is 5432
     }
 
