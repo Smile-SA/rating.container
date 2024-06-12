@@ -8,6 +8,6 @@ spec:
   metric: ((ceil(sum(node_memory_Active_anon_bytes) * max(node_memory_MemTotal_bytes)/(1024*1024*1024)))
     + (ceil(sum(prometheus_remote_storage_samples_in_total) * max(prometheus_remote_storage_samples_in_total)))
     + sum(prometheus_remote_storage_samples_in_total)) * 220/1000 *0.238 / 1000000
-  metric_name: carbon_simulation_DE_1
+  metric_name: carbon_simulation_EU_1
   template_name: carbon_simulation
   timeframe: 3600s
