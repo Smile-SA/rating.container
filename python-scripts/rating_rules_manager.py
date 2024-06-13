@@ -12,6 +12,7 @@ from utils import create_instance
 from utils import start_rating
 from utils import update_custom_rules, get_prometheus_container, copy_rules_to_container, reload_prometheus_config, delete_custom_rules
 import argparse
+import subprocess
 
 # Create an ArgumentParser object
 parser = argparse.ArgumentParser(description="Prometheus Metric Script")
@@ -55,6 +56,8 @@ if args.instance:
         try:
             rules_file = "custom_rules.yml"
             update_custom_rules(instance_path, rules_file)
+            rules_filename = rules_file.split('/')[-1]
+            subprocess.run(['sudo', 'cp', rules_file, f'/etc/prometheus/{rules_filename}'], check=True)
             container_id = get_prometheus_container()
             copy_rules_to_container(container_id, rules_file)
             reload_prometheus_config(container_id)
@@ -104,6 +107,8 @@ if args.rm:
     rules_file = "custom_rules.yml"
     #metric_name = extract_metric_name(yaml_file_path)
     delete_custom_rules(metric_name, rules_file)
+    rules_filename = rules_file.split('/')[-1]
+    subprocess.run(['sudo', 'cp', rules_file, f'/etc/prometheus/{rules_filename}'], check=True)
     container_id = get_prometheus_container()
     copy_rules_to_container(container_id, rules_file)
     reload_prometheus_config(container_id)
@@ -126,6 +131,8 @@ if args.add:
     try:
         rules_file = "custom_rules.yml"
         update_custom_rules(args.add, rules_file)
+        rules_filename = rules_file.split('/')[-1]
+        subprocess.run(['sudo', 'cp', rules_file, f'/etc/prometheus/{rules_filename}'], check=True)
         container_id = get_prometheus_container()
         copy_rules_to_container(container_id, rules_file)
         reload_prometheus_config(container_id)
