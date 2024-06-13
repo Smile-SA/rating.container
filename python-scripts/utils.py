@@ -5,8 +5,7 @@ import json
 from collections import OrderedDict
 import yaml
 import requests
-
-
+import subprocess
 
 def start_rating(yaml_file_path,insert=True):
     try:
@@ -250,3 +249,87 @@ def get_promql_from_yaml_parser(data):
         query = query.replace(placeholder, f'{{{value}}}')
     return query
 
+def update_custom_rules(input_file, rules_file):
+    # Read the input YAML file
+    with open(input_file, 'r') as file:
+        input_data = yaml.safe_load(file)
+    
+    # Extract the necessary fields from the input YAML
+    name = input_data['spec']['metric_name']
+    expr = input_data['spec']['metric']
+    
+    # Create the new rule to be added
+    new_rule = {
+        'record': name,
+        'expr': expr
+    }
+    
+    # Read the existing rules file
+    with open(rules_file, 'r') as file:
+        rules_data = yaml.safe_load(file)
+    
+    # Add the new rule to the rules data
+    rules_data['groups'][0]['rules'].append(new_rule)
+    
+    # Write the updated rules back to the file
+    with open(rules_file, 'w') as file:
+        yaml.dump(rules_data, file, default_flow_style=False)
+    
+    #print(f"Updated {rules_file} with new rule for {name}")
+
+def get_prometheus_container():
+    # Find the Prometheus container ID
+    result = subprocess.run(['sudo','docker', 'ps', '--filter', 'ancestor=quay.io/prometheus/prometheus:v2.33.1', '--format', '{{.ID}}'],
+                            stdout=subprocess.PIPE, text=True, check=True)
+    container_id = result.stdout.strip()
+    if not container_id:
+        raise RuntimeError("Prometheus container not found!")
+    return container_id
+
+def copy_rules_to_container(container_id, rules_file):
+    # Extract filename from the full path
+    rules_filename = rules_file.split('/')[-1]
+    # Copy the updated custom rules file to the Prometheus container
+    subprocess.run(['sudo','docker', 'cp', rules_file, f'{container_id}:/etc/prometheus/{rules_filename}'], check=True)
+
+def reload_prometheus_config(container_id):
+    # Reload Prometheus configuration by sending SIGHUP signal
+    subprocess.run(['sudo','docker', 'kill', '-s', 'HUP', container_id], check=True)
+
+def delete_custom_rules(record_name, rules_file):
+    with open(rules_file, 'r') as file:
+        data = yaml.safe_load(file)
+
+    modified = False
+    for group in data['groups']:
+        initial_rule_count = len(group['rules'])
+        group['rules'] = [rule for rule in group['rules'] if rule.get('record') != record_name]
+        if len(group['rules']) != initial_rule_count:
+            modified = True
+
+    if modified:
+        with open(rules_file, 'w') as file:
+            yaml.safe_dump(data, file, default_flow_style=False)
+        print(f"Deleted rule '{record_name}' from {rules_file}.")
+    else:
+        print(f"No rule with record name '{record_name}' found in {rules_file}.")
+
+def extract_metric_name(yaml_file_path):
+    try:
+        with open(yaml_file_path, 'r') as file:
+            data = yaml.safe_load(file)
+    except FileNotFoundError:
+        print(f"Error: File '{yaml_file_path}' not found.")
+        return None
+    except yaml.YAMLError as e:
+        print(f"Error parsing YAML file: {e}")
+        return None
+
+    spec = data.get('spec', {})
+    metric_name = spec.get('metric_name')
+
+    if metric_name:
+        return metric_name
+    else:
+        print("Metric name not found in the YAML file.")
+        return None

@@ -7,9 +7,10 @@ from utils import insert_into_table
 import json
 import shutil
 from utils import list_of_list
-from utils import delete_from_table
+from utils import delete_from_table, extract_metric_name
 from utils import create_instance
 from utils import start_rating
+from utils import update_custom_rules, get_prometheus_container, copy_rules_to_container, reload_prometheus_config, delete_custom_rules
 import argparse
 
 # Create an ArgumentParser object
@@ -90,6 +91,12 @@ if args.rm:
     if os.path.exists(yaml_file_path):
         os.remove(yaml_file_path)
         print(f" {args.rm} Removed")
+    rules_file = "custom_rules.yml"
+    metric_name = extract_metric_name(yaml_file_path)
+    delete_custom_rules(metric_name, rules_file)
+    container_id = get_prometheus_container()
+    copy_rules_to_container(container_id, rules_file)
+    reload_prometheus_config(container_id)
 
 if args.add:
     # Code to add the YAML file specified by --add
@@ -106,6 +113,17 @@ if args.add:
         print(f"Error: The specified file {yaml_file_path} does not exist.")
 
     start_rating(yaml_file_path)
+    try:
+        rules_file = "custom_rules.yml"
+        update_custom_rules(args.add, rules_file)
+        container_id = get_prometheus_container()
+        copy_rules_to_container(container_id, rules_file)
+        reload_prometheus_config(container_id)
+        print("Updated custom rules and reloaded Prometheus configuration.")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        sys.exit(1)
+
 
     
 
@@ -115,5 +133,8 @@ if args.folder_path and not args.add and not args.rm and not args.update:
         if filename.endswith('.yaml'):
             yaml_file_path = os.path.join(folder_path, filename)
             start_rating(yaml_file_path)
+            
+
+
             
 
