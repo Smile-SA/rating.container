@@ -1,0 +1,5 @@
+groups:
+- name: custom_metrics
+  rules:
+  - expr: null
+    record: null
