@@ -84,12 +84,16 @@ def start_rating(yaml_file_path,insert=True):
 
 
 def create_instance(template_path, value_path, instance_path):
-    # Load the template and value YAML files
-    with open(template_path, 'r') as template_file:
-        template_data = yaml.safe_load(template_file)
+    try:
+        # Load the template and value YAML files
+        with open(template_path, 'r') as template_file:
+            template_data = yaml.safe_load(template_file)
 
-    with open(value_path, 'r') as value_file:
-        value_data = yaml.safe_load(value_file)
+        with open(value_path, 'r') as value_file:
+            value_data = yaml.safe_load(value_file)
+    except Exception as e:
+        print(f"Error loading YAML files: {e}")
+        return
 
     # Assuming value_data is a list of dictionaries
     if isinstance(value_data, list):
@@ -104,27 +108,41 @@ def create_instance(template_path, value_path, instance_path):
         print(f"Error: Invalid format in {value_path}")
         return
 
-    content_instance = OrderedDict((key, value_data[key]) for key in value_data.keys())
-    content_instance['metric'] = template_data['spec']['query_template']
+    try:
+        # Replace {carbon_factor} placeholder in query_template with the actual value
+        if 'carbon_factor' in value_data and 'query_template' in template_data['spec']:
+            query_template = template_data['spec']['query_template']
+            query_template = query_template.replace('{carbon_factor}', str(value_data['carbon_factor']))
+            template_data['spec']['query_template'] = query_template
+        
+        # Create content instance from value_data
+        content_instance = OrderedDict((key, value_data[key]) for key in value_data.keys())
+        content_instance['metric'] = template_data['spec']['query_template']
     
-    # Convert OrderedDict to regular dictionary
-    content_instance_dict = dict(content_instance)
+        # Convert OrderedDict to regular dictionary
+        content_instance_dict = dict(content_instance)
 
+        # Create the instance YAML data
+        instance_data = {
+            'apiVersion': 'rating.smile.fr/v1',
+            'kind': 'RatingRuleInstance',
+            'metadata': {
+                'name': f'rating-rule-instance-{content_instance["metric_name"]}',
+                'namespace': 'rating'
+            },
+            'spec': content_instance_dict
+        }
 
-    # Create the instance YAML data
-    instance_data = {
-        'apiVersion': 'rating.alterway.fr/v1',
-        'kind': 'RatingRuleInstance',
-        'metadata': {
-            'name': f'rating-rule-instance-{content_instance["metric_name"]}',
-            'namespace': 'rating'
-        },
-        'spec': content_instance_dict
-    }
+        # Write the instance YAML data to the instance file
+        with open(instance_path, 'w') as instance_file:
+            yaml.dump(instance_data, instance_file, default_flow_style=False)
 
-    # Write the instance YAML data to the instance file
-    with open(instance_path, 'w') as instance_file:
-        yaml.dump(instance_data, instance_file, default_flow_style=False)
+        print(f"Instance YAML file created at {instance_path}")
+    
+    except KeyError as e:
+        print(f"Error: Missing key in the provided data - {e}")
+    except Exception as e:
+        print(f"Unexpected error: {e}")
 
 def list_of_list(lst):
     if all(isinstance(item, list) for item in lst):
