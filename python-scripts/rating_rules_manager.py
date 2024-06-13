@@ -54,7 +54,7 @@ if args.instance:
         start_rating(instance_path)
         try:
             rules_file = "custom_rules.yml"
-            update_custom_rules(args.add, rules_file)
+            update_custom_rules(instance_path, rules_file)
             container_id = get_prometheus_container()
             copy_rules_to_container(container_id, rules_file)
             reload_prometheus_config(container_id)
