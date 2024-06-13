@@ -52,6 +52,16 @@ if args.instance:
         create_instance(template_path, value_path, instance_path)
         print(f"{args.instance} instance created")
         start_rating(instance_path)
+        try:
+            rules_file = "custom_rules.yml"
+            update_custom_rules(args.add, rules_file)
+            container_id = get_prometheus_container()
+            copy_rules_to_container(container_id, rules_file)
+            reload_prometheus_config(container_id)
+            print("Updated custom rules and reloaded Prometheus configuration.")
+        except Exception as e:
+            print(f"An error occurred: {e}")
+            sys.exit(1)
     else:
         print("Both templates and values paths are required to create instances.")
     sys.exit(1)
@@ -92,7 +102,7 @@ if args.rm:
         os.remove(yaml_file_path)
         print(f" {args.rm} Removed")
     rules_file = "custom_rules.yml"
-    metric_name = extract_metric_name(yaml_file_path)
+    #metric_name = extract_metric_name(yaml_file_path)
     delete_custom_rules(metric_name, rules_file)
     container_id = get_prometheus_container()
     copy_rules_to_container(container_id, rules_file)
