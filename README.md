@@ -62,13 +62,6 @@ Database initialization :
 
 
 
-### Apply rating rules 
-
-```bash
-./python-scripts/rating_rules_manager.py rating-rules
-```
-
-This command exposes rating rules defined in the configuration file to prometheus.
 
 ## **Runtime options**
 
