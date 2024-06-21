@@ -28,4 +28,30 @@ for image in "${images[@]}"; do
   fi
 done
 
+# List of volumes as specified in the docker-compose file
+volumes=("ratingdocker_grafana-data" "ratingdocker_timescaledb_data")
+
+# Remove specified volumes
+for volume in "${volumes[@]}"; do
+  if [ $(docker volume ls -q -f name="$volume") ]; then
+    echo "Removing volume: $volume"
+    docker volume rm $volume
+  else
+    echo "Volume $volume not found"
+  fi
+done
+
+# List of networks as specified in the docker-compose file
+networks=("ratingdocker_monitoring_net")
+
+# Remove specified networks
+for network in "${networks[@]}"; do
+  if [ $(docker network ls -q -f name="$network") ]; then
+    echo "Removing network: $network"
+    docker network rm $network
+  else
+    echo "Network $network not found"
+  fi
+done
+
 echo "uninstallation completed"
