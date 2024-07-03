@@ -1,6 +1,6 @@
 # Overview
 
-`rating-docker` is a Docker service that consume customizable **K**ey **P**erformance **I**ndicator as metrics.
+`rating-container` is a Docker service that consume customizable **K**ey **P**erformance **I**ndicator as metrics.
 
 
 
@@ -47,12 +47,12 @@ chmod +x init_project.sh
 
 
 ### Start Rating Docker 
-The script `start-rating-docker.sh` launches the necessary services defined in the `docker-compose.yml` file, including Prometheus, Grafana, Node Exporter, and TimescaleDB.
+The script `start-rating-container.sh` launches the necessary services defined in the `docker-compose.yml` file, including Prometheus, Grafana, Node Exporter, and TimescaleDB.
 
 
 
 ```bash
-./start-rating-docker.sh
+./start-rating-container.sh
 ```
 
 Database initialization :  
