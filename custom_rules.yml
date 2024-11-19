@@ -3,3 +3,19 @@ groups:
   rules:
   - expr: null
     record: null
+  - expr: ((ceil(sum(node_memory_Active_anon_bytes) * max(node_memory_MemTotal_bytes)/(1024*1024*1024)))
+      + (ceil(sum(prometheus_remote_storage_samples_in_total) * max(prometheus_remote_storage_samples_in_total)))
+      + sum(prometheus_remote_storage_samples_in_total)) * 220/1000 *0.28 / 1000000
+    record: carbon_simulation_FR_1
+  - expr: ((ceil(sum(node_memory_Active_anon_bytes) * max(node_memory_MemTotal_bytes)/(1024*1024*1024)))
+      + (ceil(sum(prometheus_remote_storage_samples_in_total) * max(prometheus_remote_storage_samples_in_total)))
+      + sum(prometheus_remote_storage_samples_in_total)) * 220/1000 *0.253 / 1000000
+    record: carbon_simulation_DE_1
+  - expr: ((ceil(sum(node_memory_Active_anon_bytes) * max(node_memory_MemTotal_bytes)/(1024*1024*1024)))
+      + (ceil(sum(prometheus_remote_storage_samples_in_total) * max(prometheus_remote_storage_samples_in_total)))
+      + sum(prometheus_remote_storage_samples_in_total)) * 220/1000 *0.297 / 1000000
+    record: carbon_simulation_IT_1
+  - expr: ((ceil(sum(node_memory_Active_anon_bytes) * max(node_memory_MemTotal_bytes)/(1024*1024*1024)))
+      + (ceil(sum(prometheus_remote_storage_samples_in_total) * max(prometheus_remote_storage_samples_in_total)))
+      + sum(prometheus_remote_storage_samples_in_total)) * 220/1000 *0.238 / 1000000
+    record: carbon_simulation_EU_1

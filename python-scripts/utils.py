@@ -40,7 +40,7 @@ def start_rating(yaml_file_path,insert=True):
     query_expression = query
     
     # Define the Prometheus API URL
-    prometheus_url = 'http://localhost:9090/api/v1/query'
+    prometheus_url = 'http://0.0.0.0:9090/api/v1/query'
 
     # Construct the request parameters
     params = {
@@ -159,7 +159,7 @@ def insert_into_table(table_name,  columns,values):
         'dbname': 'mydatabase',
         'user': 'myuser',
         'password': 'mypassword',
-        'host': 'localhost'  # Typically 'localhost' for local connections
+        'host': '0.0.0.0'  # Typically '0.0.0.0' for local connections
         #'port': 'your_port'   # Default PostgreSQL port is 5432
     }
 
@@ -198,7 +198,7 @@ def delete_from_table(table_name, column, value_of_column):
         'dbname': 'mydatabase',
         'user': 'myuser',
         'password': 'mypassword',
-        'host': 'localhost'  # Typically 'localhost' for local connections
+        'host': '0.0.0.0'  # Typically '0.0.0.0' for local connections
         #'port': 'your_port'   # Default PostgreSQL port is 5432
     }
 

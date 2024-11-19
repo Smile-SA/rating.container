@@ -11,7 +11,7 @@ def read_data_from_table(table_name, metric_name=None):
         'dbname': 'mydatabase',
         'user': 'myuser',
         'password': 'mypassword',
-        'host': 'localhost',
+        'host': '0.0.0.0',
         'port': 5432  # Default PostgreSQL port is 5432
     }
 

@@ -10,7 +10,7 @@ def res2json(table_name, metric_name, output_file):
         'dbname': 'mydatabase',
         'user': 'myuser',
         'password': 'mypassword',
-        'host': 'localhost'  # Typically 'localhost' for local connections
+        'host': '0.0.0.0'  # Typically '0.0.0.0' for local connections
         # Default PostgreSQL port is 5432
     }
 

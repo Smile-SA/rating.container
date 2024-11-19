@@ -24,7 +24,7 @@ def get_prometheus_url():
 
 
 # Define your Grafana API URL
-grafana_url = 'http://localhost:3000'
+grafana_url = 'http://0.0.0.0:3000'
 
 # Define your Grafana username and password
 username = 'admin'
